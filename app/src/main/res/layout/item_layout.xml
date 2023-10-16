@@ -120,10 +120,26 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#33D435"
+        android:gravity="center"
+        android:shadowColor="#BC2929"
+        android:text="SAVE"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#BA1313"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
         android:id="@+id/delButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="#BD3737"
         android:gravity="center"
         android:shadowColor="#BC2929"
@@ -131,6 +147,7 @@
         android:textColor="#FFFFFF"
         android:textColorHighlight="#BA1313"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintStart_toEndOf="@+id/saveButton"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

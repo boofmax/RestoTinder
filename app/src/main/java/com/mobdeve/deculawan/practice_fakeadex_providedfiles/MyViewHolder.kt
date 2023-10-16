@@ -13,6 +13,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     private val pokeSpecies: TextView= itemView.findViewById(R.id.pokeSpecies)
     private val pokeLocation: TextView= itemView.findViewById(R.id.pokeLocation)
     private val delButton: Button = itemView.findViewById(R.id.delButton)
+    private val saveButton: Button = itemView.findViewById(R.id.saveButton)
         fun bindData(character: PokemonModel) {
             pokeImage.setImageResource(character.imageId)
             pokeName.text = character.name
