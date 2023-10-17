@@ -28,5 +28,6 @@ class MainActivity : ComponentActivity() {
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(this.recyclerView)
 
+
     }
 }

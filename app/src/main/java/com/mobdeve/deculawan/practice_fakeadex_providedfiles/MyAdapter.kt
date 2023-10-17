@@ -30,6 +30,22 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
             this.data.removeAt(position)
             notifyDataSetChanged()
         })
+
+        holder.setFavoriteOnClickListener(View.OnClickListener {
+            if(holder.isFavorite){
+                Toast.makeText(
+                    holder.itemView.context,
+                    "Restaurant Removed from Favorites: " + data[holder.adapterPosition].name,
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    holder.itemView.context,
+                    "Restaurant Added to Favorites: " + data[holder.adapterPosition].name,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
     }
 
 }
