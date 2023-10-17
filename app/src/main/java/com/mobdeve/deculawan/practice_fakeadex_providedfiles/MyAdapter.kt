@@ -5,9 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
 
-class MyAdapter(private val data: ArrayList<PokemonModel>): RecyclerView.Adapter<MyViewHolder>() {
+class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.item_layout, parent, false)
@@ -24,7 +23,7 @@ class MyAdapter(private val data: ArrayList<PokemonModel>): RecyclerView.Adapter
 
         holder.setDeleteOnClickListener(View.OnClickListener {
             holder.itemView.setOnClickListener{
-                Toast.makeText(holder.itemView.context, "Pokemon Deleted: "+
+                Toast.makeText(holder.itemView.context, "Restaurant Deleted: "+
                 data[holder.adapterPosition].name, Toast.LENGTH_SHORT).show()
             }
 

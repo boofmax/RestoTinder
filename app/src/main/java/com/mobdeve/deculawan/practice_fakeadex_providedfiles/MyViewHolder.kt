@@ -7,19 +7,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
 class MyViewHolder(itemView: View): ViewHolder(itemView) {
-    private val pokeImage: ImageView = itemView.findViewById(R.id.pokeImage)
-    private val pokeName: TextView= itemView.findViewById(R.id.pokemon)
-    private val pokeDescription: TextView= itemView.findViewById(R.id.pokeDescription)
-    private val pokeSpecies: TextView= itemView.findViewById(R.id.pokeSpecies)
-    private val pokeLocation: TextView= itemView.findViewById(R.id.pokeLocation)
+    private val restaurantImage: ImageView = itemView.findViewById(R.id.ivRestaurantImage)
+    private val restaurantName: TextView= itemView.findViewById(R.id.tvRestaurantName)
+    private val restaurantLocation: TextView= itemView.findViewById(R.id.tvLocation)
+    private val restaurantPricing: TextView= itemView.findViewById(R.id.tvPricing)
+    private val restaurantRatings: TextView= itemView.findViewById(R.id.tvRatings)
     private val delButton: Button = itemView.findViewById(R.id.delButton)
     private val saveButton: Button = itemView.findViewById(R.id.saveButton)
-        fun bindData(character: PokemonModel) {
-            pokeImage.setImageResource(character.imageId)
-            pokeName.text = character.name
-            pokeDescription.text = character.desc
-            pokeSpecies.text = character.specie
-            pokeLocation.text = character.location
+        fun bindData(character: RestaurantModel) {
+            restaurantImage.setImageResource(character.imageId)
+            restaurantName.text = character.name
+            restaurantLocation.text = character.location
+            restaurantPricing.text = character.pricing.toString()
+            restaurantRatings.text = character.rating.toString()
     }
 
     fun setDeleteOnClickListener(onClickListener: View.OnClickListener){

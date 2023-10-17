@@ -5,109 +5,59 @@ package com.mobdeve.deculawan.practice_fakeadex_providedfiles;
 import java.util.ArrayList;
 
 public class DataGenerator {
-    public static ArrayList<PokemonModel> loadData() {
-        ArrayList<PokemonModel> data = new ArrayList<PokemonModel>();
+    public static ArrayList<RestaurantModel> loadData() {
+        ArrayList<RestaurantModel> data = new ArrayList<RestaurantModel>();
 
-        data.add(new PokemonModel("Brownisaur",
-                "Fudge Sweet",
-                "Professor Cinna’s Lab or the Cooking Dojo",
-                "Sunlight is absorbed by its whipped cream and used to make the cherry on its back grow larger in size.",
+        data.add(new RestaurantModel("Mang Inasal",
+                "Taft Ave, Malate, Manila, 1004 Metro Manila",
+                2,
+                5,
                 R.drawable.img1));
-        data.add(new PokemonModel("Chocosaur",
-                "Fudge Sweet",
-                "Evolve Brownisaur",
-                "The cherry on its back is known to be quite delicious but it is also heavy making it a useful blunt attack.",
+        data.add(new RestaurantModel("KFC",
+                "1340 Taft Ave. Ermita Mla. ( KIOSK ) 8 PGH Cmpd Bgy 669 Zone 72, Ermita, Manila, 1006 Metro Manila",
+                2,
+                3,
                 R.drawable.img2));
-        data.add(new PokemonModel("Fudgasaur",
-                "Fudge Sweet",
-                "Evolve Chocosaur",
-                "It grows many cherries. It can trap prey inside its whipped cream but it’s also a fun ride.",
+        data.add(new RestaurantModel("McDonalds",
+                "2399 Taft Ave, Malate, Manila, 1004 Metro Manila",
+                1,
+                4,
                 R.drawable.img3));
-        data.add(new PokemonModel("Strawander",
-                "Berry Sweet",
-                "Professor Cinna’s Lab or the Cooking Dojo",
-                "A sweet aroma is emitted from the strawberry tip of its tail which grows in size over time.",
+        data.add(new RestaurantModel("7-11",
+                "2507 Taft Ave, Malate, Manila, 1004 Metro Manila",
+                2,
+                3,
                 R.drawable.img4));
-        data.add(new PokemonModel("Straweleon",
-                "Berry Sweet",
-                "Evolve Strawander",
-                "Although the strawberry on its tail has grown heavier it can swing it against foes with relative ease.",
+        data.add(new RestaurantModel("Jollibee",
+                "HXCR+2QQ, San Andres Corner, Taft Ave, Malate, Manila, 1017 Metro Manila",
+                1,
+                4,
                 R.drawable.img5));
-        data.add(new PokemonModel("Strawizard",
-                "Berry Sweet",
-                "Evolve Strawmeleon",
-                "Supposedly it has strawberry milk in place of saliva but it rarely drools unless its strawberry is bitten.",
+        data.add(new RestaurantModel("Burger King",
+                "1017 Taft Ave, Malate, Manila, 1017 Metro Manila",
+                2,
+                4,
                 R.drawable.img6));
-        data.add(new PokemonModel("Squirpie",
-                "Apple Sweet",
-                "Professor Cinna’s Lab or the Cooking Dojo",
-                "Its head and limbs serve as filling for the pie on its belly. It can be eaten and it will grow back later.",
+        data.add(new RestaurantModel("Kenny Rogers",
+                "2576 Taft Ave, Malate, Manila, 1004 Metro Manila",
+                3,
+                4,
                 R.drawable.img7));
-        data.add(new PokemonModel("Tartortle",
-                "Apple Sweet",
-                "Evolve Squirpie",
-                "Its apple pie has become very delicious. It becomes happy when its smell is complimented.",
+        data.add(new RestaurantModel("Tropical Hut",
+                "Ground Floor, Star City, Vicente Sotto St, Pasay, Metro Manila",
+                1,
+                5,
                 R.drawable.img8));
-        data.add(new PokemonModel("Piestoise",
-                "Apple Sweet",
-                "Evolve Tartortle",
-                "It has grown a pair of candy cane cannons which can fire very large and tasty cupcakes at its foes.",
+        data.add(new RestaurantModel("Ate Rica's Bacsilog",
+                "2305 Fidel A.Reyes, Malate, Manila, 1004 Metro Manila",
+                2,
+                2,
                 R.drawable.img9));
-        data.add(new PokemonModel("Cottonat",
-                "Cotton Sweet",
-                "Flour Forest",
-                "Its body is a ball of cotton candy. Swarms of it can unintentionally stick to and immobilize others.",
+        data.add(new RestaurantModel("Starbucks",
+                "D' Students' Place Bldg., Taft Ave, corner Estrada St, Malate, Manila",
+                3,
+                4,
                 R.drawable.img10));
-        data.add(new PokemonModel("Cottomoth",
-                "Moth Sweet",
-                "Evolve Cottonat",
-                "Its wings create a sweet aroma as it flies. It makes its nest out of sticky but delicious cotton candy.",
-                R.drawable.img11));
-        data.add(new PokemonModel("Spinacake",
-                "Cake Sweet",
-                "Flour Forest",
-                "It hangs from and builds its web out of taffy. It also spins vanilla cakes for any unwilling guests.",
-                R.drawable.img12));
-        data.add(new PokemonModel("Ariacake",
-                "Cake Sweet",
-                "Evolve Spinacake",
-                "Its legs are like birthday candles though they are never lit. Its cake-like body is filled with raspberry.",
-                R.drawable.img13));
-        data.add(new PokemonModel("Cookietot",
-                "Gentlebug Sweet",
-                "Flour Forest, Chocolate Cave",
-                "Its body seems to contain cookie but it wears a raspberry outfit to improve its taste making it very attractive.",
-                R.drawable.img14));
-        data.add(new PokemonModel("Cookietune",
-                "Candy Sweet",
-                "Evolve Cookietot",
-                "Its feelers have grown into candy canes. They have a raspberry-like taste to them but it is not the same.",
-                R.drawable.img15));
-        data.add(new PokemonModel("Chocowool",
-                "Cotton Sweet",
-                "Orange Road",
-                "It very much loves hugs however one should be aware that it may leave a blob of chocolate on whatever it hugs.",
-                R.drawable.img16));
-        data.add(new PokemonModel("Chocofluff",
-                "Cotton Sweet",
-                "Evolve Chocowool",
-                "It keeps its wool clean of any excess chocolate. Hugging it can still result in its cotton being left on the hugger.",
-                R.drawable.img17));
-        data.add(new PokemonModel("Candaros",
-                "Sheep Sweet",
-                "Evolve Chocofluff",
-                "It has merged the chocolate and cotton candy to form its new body. It now favors licks over hugs.",
-                R.drawable.img18));
-        data.add(new PokemonModel("Rattatart",
-                "Rat Sweet",
-                "Apple Road, Cotton Crater, Pirate Fort",
-                "The blueberry on its tail and its strawberry ears are rich in taste and used in tarts hence the name.",
-                R.drawable.img19));
-        data.add(new PokemonModel("Raticake",
-                "Rat Sweet",
-                "Cotton Crater, Pirate Fort, Evolve Rattatart",
-                "The berries on its back constantly fall off as new ones grow. Other PokéSweets love to eat them.",
-                R.drawable.img20));
         return data;
     }
 }

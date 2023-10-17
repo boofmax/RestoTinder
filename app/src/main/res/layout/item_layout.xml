@@ -5,42 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Places Basic: image -->
     <ImageView
-        android:id="@+id/pokeImage"
+        android:id="@+id/ivRestaurantImage"
         android:layout_width="220dp"
         android:layout_height="200dp"
         android:layout_marginTop="132dp"
-        android:src="@drawable/img16"
+        android:src="@drawable/img1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Places Basic: name -->
     <TextView
-        android:id="@+id/pokemon"
+        android:id="@+id/tvRestaurantName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:gravity="center"
-        android:text="Chocowool"
+        android:text="Mang Inasal"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pokeImage"
+        app:layout_constraintTop_toBottomOf="@+id/ivRestaurantImage"
         />
 
+    <!-- Places Basic: formatted_address/adr_address (unsure) -->
     <TextView
-        android:id="@+id/pokeDescription"
+        android:id="@+id/tvLocation"
         android:layout_width="343dp"
         android:layout_height="53dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
-        android:text="It very much loves hugs however one should be aware that it may leave a blob of chocolate on whatever it hugs."
+        android:text="Taft Ave, Malate, Manila, 1004 Metro Manila"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pokemon"
+        app:layout_constraintTop_toBottomOf="@+id/tvRestaurantName"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
@@ -50,7 +53,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pokeDescription">
+        app:layout_constraintTop_toBottomOf="@+id/tvLocation">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -60,25 +63,26 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/speciesHeader"
+                android:id="@+id/tvPriceHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="SPECIES"
+                android:text="PRICING"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pokeDescription"
                 tools:ignore="MissingConstraints" />
 
+            <!-- Places Atmosphere: price_level -->
             <TextView
-                android:id="@+id/pokeSpecies"
+                android:id="@+id/tvPricing"
                 android:layout_width="162dp"
                 android:layout_height="21dp"
                 android:layout_marginTop="1dp"
                 android:gravity="center"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
-                android:text="Cotton Sweet"
+                android:text="$$"
                 app:layout_constraintTop_toBottomOf="@+id/speciesHeader"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="49dp" />
@@ -92,24 +96,25 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/locationHeader"
+                android:id="@+id/tvRatingsHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="LOCATION"
+                android:text="RATINGS"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pokeDescription"
                 tools:ignore="MissingConstraints" />
 
+            <!-- Places Atmosphere: rating -->
             <TextView
-                android:id="@+id/pokeLocation"
+                android:id="@+id/tvRatings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
-                android:text="Orange Road"
+                android:text="5 ⭐️"
                 app:layout_constraintTop_toBottomOf="@+id/locationHeader"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="207dp" />

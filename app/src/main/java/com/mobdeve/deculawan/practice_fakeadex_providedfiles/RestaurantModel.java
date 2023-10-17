@@ -1,14 +1,14 @@
 package com.mobdeve.deculawan.practice_fakeadex_providedfiles;
 
-public class PokemonModel {
-    private String name, specie, location, desc;
-    private int imageId;
+public class RestaurantModel {
+    private String name, location;
+    private int pricing, rating, imageId;
 
-    public PokemonModel(String name, String specie, String location, String desc, int imageId) {
+    public RestaurantModel(String name, String location, int pricing, int rating, int imageId) {
         this.name = name;
-        this.specie = specie;
         this.location = location;
-        this.desc = desc;
+        this.pricing = pricing;
+        this.rating = rating;
         this.imageId = imageId;
     }
 
@@ -16,16 +16,16 @@ public class PokemonModel {
         return name;
     }
 
-    public String getSpecie() {
-        return specie;
-    }
-
     public String getLocation() {
         return location;
     }
 
-    public String getDesc() {
-        return desc;
+    public int getPricing() {
+        return pricing;
+    }
+
+    public int getRating() {
+        return rating;
     }
 
     public int getImageId() {
@@ -36,9 +36,9 @@ public class PokemonModel {
     public String toString() {
         return "PokemonModel{" +
                 "name='" + name + '\'' +
-                ", specie='" + specie + '\'' +
                 ", location='" + location + '\'' +
-                ", desc='" + desc + '\'' +
+                ", pricing='" + pricing + '\'' +
+                ", rating='" + rating + '\'' +
                 ", imageId=" + imageId +
                 '}';
     }
