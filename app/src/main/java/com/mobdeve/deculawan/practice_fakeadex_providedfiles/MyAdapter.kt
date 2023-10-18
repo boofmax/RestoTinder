@@ -49,7 +49,7 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
         })
 
         holder.setRatingOnClickListener(View.OnClickListener {
-            val intent = Intent(holder.itemView.context, RatingActivity::class.java)
+            val intent = Intent(holder.itemView.context, UserRatings::class.java)
             intent.putExtra("restaurantName", data[holder.adapterPosition].name)
             intent.putExtra("restaurantRating", data[holder.adapterPosition].rating)
             holder.itemView.context.startActivity(intent)
