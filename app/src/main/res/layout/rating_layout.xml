@@ -9,17 +9,17 @@
         android:id="@+id/tvReviewUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Username"
+        android:text="Mirza ASD"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvReviewDescription"
+        android:id="@+id/tvReviewComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Description"
+        android:text="We bought mcdo fries for takeout. We got our order and headed out but we noticed that it was undercooked. We went back inside and returned it. They replaced it with another serving of fries. When we got home, it was still cooked the same way hence it is still undercooked. See photo for reference. You can see the fries is still color white. Anemic 😞"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRatingStars" />
 

@@ -60,4 +60,21 @@ public class DataGenerator {
                 R.drawable.img10));
         return data;
     }
+
+    public static ArrayList<RatingModel> loadRatingData() {
+        ArrayList<RatingModel> ratings = new ArrayList<RatingModel>();
+
+        ratings.add(new RatingModel("user1", "Great food!", 5));
+        ratings.add(new RatingModel("user2", "Average experience.", 3));
+        ratings.add(new RatingModel("user3", "Excellent service.", 4));
+        ratings.add(new RatingModel("user4", "Not recommended.", 2));
+        ratings.add(new RatingModel("user5", "Loved it!", 5));
+        ratings.add(new RatingModel("user6", "Could be better.", 3));
+        ratings.add(new RatingModel("user7", "Amazing place.", 5));
+        ratings.add(new RatingModel("user8", "Decent food.", 3));
+        ratings.add(new RatingModel("user9", "Friendly staff.", 4));
+        ratings.add(new RatingModel("user10", "Quick service.", 4));
+
+        return ratings;
+    }
 }
