@@ -1,5 +1,6 @@
 package com.mobdeve.deculawan.practice_fakeadex_providedfiles
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +46,13 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        })
+
+        holder.setRatingOnClickListener(View.OnClickListener {
+            val intent = Intent(holder.itemView.context, RatingActivity::class.java)
+            intent.putExtra("restaurantName", data[holder.adapterPosition].name)
+            intent.putExtra("restaurantRating", data[holder.adapterPosition].rating)
+            holder.itemView.context.startActivity(intent)
         })
     }
 

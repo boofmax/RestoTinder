@@ -5,6 +5,7 @@ import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
@@ -17,6 +18,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     private val delButton: Button = itemView.findViewById(R.id.delButton)
     private val saveButton: Button = itemView.findViewById(R.id.saveButton)
     private val btnFavorite: ImageButton = itemView.findViewById(R.id.btnFavorite)
+    private val linearLayoutRating : LinearLayout = itemView.findViewById(R.id.linearLayoutRating)
 
     var isFavorite: Boolean = false // default value
         fun bindData(character: RestaurantModel) {
@@ -43,5 +45,9 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
 
         onClickListener.onClick(btnFavorite)
         }
+    }
+
+    fun setRatingOnClickListener(onClickListener: View.OnClickListener) {
+        linearLayoutRating.setOnClickListener(onClickListener)
     }
 }

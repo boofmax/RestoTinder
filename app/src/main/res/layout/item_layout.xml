@@ -57,7 +57,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -89,8 +89,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/linearLayoutRating"
+            android:layout_width="181dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
@@ -136,7 +137,7 @@
         android:textColor="#FFFFFF"
         android:textColorHighlight="#BA1313"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -152,7 +153,7 @@
         android:textColor="#FFFFFF"
         android:textColorHighlight="#BA1313"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toEndOf="@+id/saveButton"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
