@@ -1,13 +1,13 @@
 package com.mobdeve.deculawan.practice_fakeadex_providedfiles
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     //load data
     private val restaurants: ArrayList<RestaurantModel> = DataGenerator.loadData()
 

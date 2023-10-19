@@ -3,13 +3,15 @@ package com.mobdeve.deculawan.practice_fakeadex_providedfiles;
 public class RestaurantModel {
     private String name, location;
     private int pricing, rating, imageId;
+    private boolean isFavorite = false;
 
-    public RestaurantModel(String name, String location, int pricing, int rating, int imageId) {
+    public RestaurantModel(String name, String location, int pricing, int rating, int imageId, boolean isFavorite) {
         this.name = name;
         this.location = location;
         this.pricing = pricing;
         this.rating = rating;
         this.imageId = imageId;
+        this.isFavorite = isFavorite;
     }
 
     public String getName() {
@@ -30,6 +32,14 @@ public class RestaurantModel {
 
     public int getImageId() {
         return imageId;
+    }
+
+    public boolean getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void toggleFavorite() {
+        isFavorite = !isFavorite;
     }
 
     @Override

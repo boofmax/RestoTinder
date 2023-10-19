@@ -30,6 +30,7 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
             this.data.removeAt(position)
             notifyDataSetChanged()
         })
+
     }
 
 }

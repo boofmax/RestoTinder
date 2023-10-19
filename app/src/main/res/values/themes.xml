@@ -2,4 +2,5 @@
 <resources>
 
     <style name="Theme.PracticeFakeadexProvidedFiles" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.AppCompat.Light.NoActionBar." parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
