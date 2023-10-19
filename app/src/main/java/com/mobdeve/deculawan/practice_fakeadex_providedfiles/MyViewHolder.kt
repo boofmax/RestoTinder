@@ -15,8 +15,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     private val restaurantLocation: TextView= itemView.findViewById(R.id.tvLocation)
     private val restaurantPricing: TextView= itemView.findViewById(R.id.tvPricing)
     private val restaurantRatings: TextView= itemView.findViewById(R.id.tvRatings)
-    private val delButton: Button = itemView.findViewById(R.id.delButton)
-    private val saveButton: Button = itemView.findViewById(R.id.saveButton)
+    private val delButton: ImageButton = itemView.findViewById(R.id.delButton)
     private val btnFavorite: ImageButton = itemView.findViewById(R.id.btnFavorite)
     private val linearLayoutRating : LinearLayout = itemView.findViewById(R.id.linearLayoutRating)
 
