@@ -1,5 +1,6 @@
 package com.mobdeve.deculawan.practice_fakeadex_providedfiles
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,28 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
             notifyDataSetChanged()
         })
 
+        holder.setFavoriteOnClickListener(View.OnClickListener {
+            if(holder.isFavorite){
+                Toast.makeText(
+                    holder.itemView.context,
+                    "Restaurant Removed from Favorites: " + data[holder.adapterPosition].name,
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    holder.itemView.context,
+                    "Restaurant Added to Favorites: " + data[holder.adapterPosition].name,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+
+        holder.setRatingOnClickListener(View.OnClickListener {
+            val intent = Intent(holder.itemView.context, UserRatings::class.java)
+            intent.putExtra("restaurantName", data[holder.adapterPosition].name)
+            intent.putExtra("restaurantRating", data[holder.adapterPosition].rating)
+            holder.itemView.context.startActivity(intent)
+        })
     }
 
 }
