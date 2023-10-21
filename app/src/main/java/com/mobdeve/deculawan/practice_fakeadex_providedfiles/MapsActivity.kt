@@ -1,7 +1,10 @@
 package com.mobdeve.deculawan.practice_fakeadex_providedfiles
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.app.ActivityCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -20,6 +23,19 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
 
         supportActionBar?.hide() // remove action bar
+
+        val locationPermission = arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(this, locationPermission, 1)
+        }
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -41,12 +57,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
+        mMap.isMyLocationEnabled = true // enable location tracking
+        mMap.uiSettings.isMyLocationButtonEnabled = true // enable location button
 
-        // Add a marker in Sydney and move the camera
-        val dlsu = LatLng(14.56593840313714, 120.9929982308952)
-        mMap.addMarker(MarkerOptions().position(dlsu).title("Marker in DLSU"))
+        val defaultLocation = LatLng(14.56593840313714, 120.9929982308952) // default location to DLSU
+        mMap.addMarker(MarkerOptions().position(defaultLocation).title("Marker in DLSU"))
         val zoomLevel = 15.0f  // Adjust this value to control the zoom level
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(dlsu, zoomLevel))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, zoomLevel))
     }
 }
