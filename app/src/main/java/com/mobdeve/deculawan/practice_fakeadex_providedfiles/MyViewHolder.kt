@@ -39,6 +39,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
 
         if (isFavorite){
             btnFavorite.setBackgroundResource(R.drawable.baseline_favorite_24)
+
         } else {
             btnFavorite.setBackgroundResource(R.drawable.baseline_favorite_border_24)
         }
