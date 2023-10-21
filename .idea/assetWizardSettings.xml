@@ -3,14 +3,6 @@
   <component name="WizardSettings">
     <option name="children">
       <map>
-<<<<<<< HEAD
-        <entry key="imageWizard">
-          <value>
-            <PersistentState />
-          </value>
-        </entry>
-=======
->>>>>>> origin/main
         <entry key="vectorWizard">
           <value>
             <PersistentState>
@@ -26,11 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-<<<<<<< HEAD
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/favorite_border/baseline_favorite_border_24.xml" />
-=======
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/delete_outline/baseline_delete_outline_24.xml" />
->>>>>>> origin/main
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/pin_drop/baseline_pin_drop_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -40,12 +28,7 @@
                         </option>
                         <option name="values">
                           <map>
-<<<<<<< HEAD
-                            <entry key="outputName" value="baseline_favorite_border_24" />
-                            <entry key="sourceFile" value="C:\Users\kylef\AndroidStudioProjects\RestoTinder" />
-=======
-                            <entry key="outputName" value="baseline_delete_outline_24" />
->>>>>>> origin/main
+                            <entry key="outputName" value="baseline_pin_drop_24" />
                           </map>
                         </option>
                       </PersistentState>

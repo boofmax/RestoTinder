@@ -54,6 +54,13 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
             intent.putExtra("restaurantRating", data[holder.adapterPosition].rating)
             holder.itemView.context.startActivity(intent)
         })
+
+        holder.setMapOnClickListener(View.OnClickListener {
+            val intent = Intent(holder.itemView.context, MapsActivity::class.java)
+           // intent.putExtra("restaurantName", data[holder.adapterPosition].name)
+           // intent.putExtra("restaurantLocation", data[holder.adapterPosition].location)
+            holder.itemView.context.startActivity(intent)
+        })
     }
 
 }

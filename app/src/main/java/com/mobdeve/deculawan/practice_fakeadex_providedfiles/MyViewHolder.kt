@@ -17,6 +17,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     private val restaurantRatings: TextView= itemView.findViewById(R.id.tvRatings)
     private val delButton: ImageButton = itemView.findViewById(R.id.delButton)
     private val btnFavorite: ImageButton = itemView.findViewById(R.id.btnFavorite)
+    private val mapButton: ImageButton = itemView.findViewById(R.id.mapButton)
     private val linearLayoutRating : LinearLayout = itemView.findViewById(R.id.linearLayoutRating)
 
     var isFavorite: Boolean = false // default value
@@ -49,4 +50,9 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     fun setRatingOnClickListener(onClickListener: View.OnClickListener) {
         linearLayoutRating.setOnClickListener(onClickListener)
     }
+
+    fun setMapOnClickListener(onClickListener: View.OnClickListener) {
+        mapButton.setOnClickListener(onClickListener)
+    }
+
 }
