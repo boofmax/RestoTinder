@@ -1,4 +1,4 @@
-package com.mobdeve.deculawan.practice_fakeadex_providedfiles;
+package com.mobdeve.s11.restotinder;
 
 public class RatingModel {
     private String username, comment;

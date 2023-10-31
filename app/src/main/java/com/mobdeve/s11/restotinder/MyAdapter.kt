@@ -1,4 +1,4 @@
-package com.mobdeve.deculawan.practice_fakeadex_providedfiles
+package com.mobdeve.s11.restotinder
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.mobdeve.s11.restotinder.R
 
 class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

@@ -1,4 +1,4 @@
-package com.mobdeve.deculawan.practice_fakeadex_providedfiles
+package com.mobdeve.s11.restotinder
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import com.mobdeve.s11.restotinder.R
 
 class MainActivity : AppCompatActivity() {
     //load data

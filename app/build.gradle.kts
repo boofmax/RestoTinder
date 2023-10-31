@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.mobdeve.deculawan.practice_fakeadex_providedfiles"
+    namespace = "com.mobdeve.s11.restotinder"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.mobdeve.deculawan.practice_fakeadex_providedfiles"
+        applicationId = "com.mobdeve.s11.restotinder"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

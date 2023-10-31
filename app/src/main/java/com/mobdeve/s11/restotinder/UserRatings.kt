@@ -1,9 +1,10 @@
-package com.mobdeve.deculawan.practice_fakeadex_providedfiles
+package com.mobdeve.s11.restotinder
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mobdeve.s11.restotinder.R
 
 class UserRatings : AppCompatActivity() {
     private val ratings: ArrayList<RatingModel> = DataGenerator.loadRatingData()

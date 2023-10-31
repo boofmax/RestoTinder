@@ -1,4 +1,4 @@
-package com.mobdeve.deculawan.practice_fakeadex_providedfiles.ui.theme
+package com.mobdeve.s11.restotinder.ui.theme
 
 import android.app.Activity
 import android.os.Build

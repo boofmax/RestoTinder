@@ -1,13 +1,13 @@
-package com.mobdeve.deculawan.practice_fakeadex_providedfiles
+package com.mobdeve.s11.restotinder
 
 import android.view.View
 import android.view.View.OnClickListener
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.mobdeve.s11.restotinder.R
 
 class MyViewHolder(itemView: View): ViewHolder(itemView) {
     private val restaurantImage: ImageView = itemView.findViewById(R.id.ivRestaurantImage)

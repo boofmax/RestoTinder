@@ -1,4 +1,4 @@
-package com.mobdeve.deculawan.practice_fakeadex_providedfiles.ui.theme
+package com.mobdeve.s11.restotinder.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

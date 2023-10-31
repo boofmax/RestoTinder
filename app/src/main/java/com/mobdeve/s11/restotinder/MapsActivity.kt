@@ -1,4 +1,4 @@
-package com.mobdeve.deculawan.practice_fakeadex_providedfiles
+package com.mobdeve.s11.restotinder
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -12,7 +12,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.mobdeve.deculawan.practice_fakeadex_providedfiles.databinding.ActivityMapsBinding
+import com.mobdeve.s11.restotinder.R
+import com.mobdeve.s11.restotinder.databinding.ActivityMapsBinding
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 

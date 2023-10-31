@@ -1,8 +1,9 @@
-package com.mobdeve.deculawan.practice_fakeadex_providedfiles
+package com.mobdeve.s11.restotinder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.mobdeve.s11.restotinder.R
 
 class RatingAdapter(private val data: ArrayList<RatingModel>) : RecyclerView.Adapter<RatingViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RatingViewHolder {
