@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Practice-Fakeadex-ProvidedFiles"
+rootProject.name = "RestoTinder"
 include(":app")
  
