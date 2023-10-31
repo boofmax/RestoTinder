@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "333811577626",
+    "project_id": "restotinder-908d4",
+    "storage_bucket": "restotinder-908d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333811577626:android:6e9528979772fc1c0572a3",
+        "android_client_info": {
+          "package_name": "com.mobdeve.s11.restotinder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsNfHQuJEVFBVA4_kLsVCJVRus3MDU5Lg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
