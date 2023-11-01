@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.mobdeve.s11.restotinder.R
-
+import com.bumptech.glide.Glide
 class MyViewHolder(itemView: View): ViewHolder(itemView) {
     private val restaurantImage: ImageView = itemView.findViewById(R.id.ivRestaurantImage)
     private val restaurantName: TextView= itemView.findViewById(R.id.tvRestaurantName)
@@ -22,7 +22,10 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
 
     var isFavorite: Boolean = false // default value
         fun bindData(character: RestaurantModel) {
-            restaurantImage.setImageResource(character.imageId)
+
+            Glide.with(itemView.context)
+                .load(character.imageId) // Replace 'character.imageUrl' with the URL string
+                .into(restaurantImage)
             restaurantName.text = character.name
             restaurantLocation.text = character.location
             restaurantPricing.text = character.pricing.toString()

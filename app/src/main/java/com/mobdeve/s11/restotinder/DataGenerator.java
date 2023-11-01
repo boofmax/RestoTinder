@@ -4,6 +4,7 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.PlacesApi;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.LatLng;
+import com.google.maps.model.Photo;
 import com.google.maps.model.PlaceType;
 import com.google.maps.model.PlacesSearchResponse;
 import com.google.maps.model.PlacesSearchResult;
@@ -20,6 +21,7 @@ public class DataGenerator {
 
     public static ArrayList<RestaurantModel> loadData() throws IOException, InterruptedException, ApiException {
         ArrayList<RestaurantModel> data = new ArrayList<RestaurantModel>();
+        String icon = "https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg";
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey("AIzaSyACiFUGdPCbbEHfCMXqtBa2RzuvOYAtptM")
                 .build();
@@ -35,71 +37,15 @@ public class DataGenerator {
             String name = result.name;
             String address = result.vicinity;
             double rating = result.rating;
-            URL icon = result.icon;
+            if(result.photos != null) {
+                icon = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + result.photos[0].photoReference + "&key=" + "AIzaSyACiFUGdPCbbEHfCMXqtBa2RzuvOYAtptM";
+            }
+            else{
+                icon = "https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg";
+            }
 
             data.add(new RestaurantModel(name, address, 1, rating, icon, false));
         }
-
-//        data.add(new RestaurantModel("Mang Inasal",
-//                "Taft Ave, Malate, Manila, 1004 Metro Manila",
-//                2,
-//                5,
-//                R.drawable.img1,
-//                false));
-//        data.add(new RestaurantModel("KFC",
-//                "1340 Taft Ave. Ermita Mla. ( KIOSK ) 8 PGH Cmpd Bgy 669 Zone 72, Ermita, Manila, 1006 Metro Manila",
-//                2,
-//                3,
-//                R.drawable.img2,
-//                false));
-//        data.add(new RestaurantModel("McDonalds",
-//                "2399 Taft Ave, Malate, Manila, 1004 Metro Manila",
-//                1,
-//                4,
-//                R.drawable.img3,
-//                false));
-//        data.add(new RestaurantModel("7-11",
-//                "2507 Taft Ave, Malate, Manila, 1004 Metro Manila",
-//                2,
-//                3,
-//                R.drawable.img4,
-//                false));
-//        data.add(new RestaurantModel("Jollibee",
-//                "HXCR+2QQ, San Andres Corner, Taft Ave, Malate, Manila, 1017 Metro Manila",
-//                1,
-//                4,
-//                R.drawable.img5,
-//                false));
-//        data.add(new RestaurantModel("Burger King",
-//                "1017 Taft Ave, Malate, Manila, 1017 Metro Manila",
-//                2,
-//                4,
-//                R.drawable.img6,
-//                false));
-//        data.add(new RestaurantModel("Kenny Rogers",
-//                "2576 Taft Ave, Malate, Manila, 1004 Metro Manila",
-//                3,
-//                4,
-//                R.drawable.img7,
-//                false));
-//        data.add(new RestaurantModel("Tropical Hut",
-//                "Ground Floor, Star City, Vicente Sotto St, Pasay, Metro Manila",
-//                1,
-//                5,
-//                R.drawable.img8,
-//                false));
-//        data.add(new RestaurantModel("Ate Rica's Bacsilog",
-//                "2305 Fidel A.Reyes, Malate, Manila, 1004 Metro Manila",
-//                2,
-//                2,
-//                R.drawable.img9,
-//                false));
-//        data.add(new RestaurantModel("Starbucks",
-//                "D' Students' Place Bldg., Taft Ave, corner Estrada St, Malate, Manila",
-//                3,
-//                4,
-//                R.drawable.img10,
-//                false));
         return data;
     }
 
