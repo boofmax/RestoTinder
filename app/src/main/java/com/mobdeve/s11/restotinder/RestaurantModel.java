@@ -1,11 +1,17 @@
 package com.mobdeve.s11.restotinder;
 
+import java.net.URL;
+
 public class RestaurantModel {
     private String name, location;
-    private int pricing, rating, imageId;
+    private int pricing;
+
+    private URL imageId;
+
+    private double rating;
     private boolean isFavorite = false;
 
-    public RestaurantModel(String name, String location, int pricing, int rating, int imageId, boolean isFavorite) {
+    public RestaurantModel(String name, String location, int pricing, double rating, URL imageId, boolean isFavorite) {
         this.name = name;
         this.location = location;
         this.pricing = pricing;
@@ -26,11 +32,11 @@ public class RestaurantModel {
         return pricing;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public int getImageId() {
+    public URL getImageId() {
         return imageId;
     }
 

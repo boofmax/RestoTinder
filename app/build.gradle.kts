@@ -77,4 +77,9 @@ dependencies {
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.4.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
+
+    // Google Places
+    implementation("com.google.android.libraries.places:places:2.4.0")
+    implementation("com.google.maps:google-maps-services:2.2.0")
+    implementation("com.android.volley:volley:1.2.1")
 }
