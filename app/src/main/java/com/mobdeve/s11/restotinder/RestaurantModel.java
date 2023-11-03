@@ -1,11 +1,7 @@
 package com.mobdeve.s11.restotinder;
 
-import android.media.Image;
-
-import com.google.maps.model.Photo;
-
 public class RestaurantModel {
-    private String name, location, imageId;
+    private String name, location, imageId, placeId;
     private int pricing;
 
 
@@ -13,7 +9,7 @@ public class RestaurantModel {
     private boolean isFavorite = false;
 
 
-    public RestaurantModel(String name, String location, int pricing, double rating, String imageId, boolean isFavorite) {
+    public RestaurantModel(String name, String location, int pricing, double rating, String imageId, boolean isFavorite, String placeId) {
 
         this.name = name;
         this.location = location;
@@ -21,6 +17,7 @@ public class RestaurantModel {
         this.rating = rating;
         this.imageId = imageId;
         this.isFavorite = isFavorite;
+        this.placeId = placeId;
     }
 
     public String getName() {
@@ -41,6 +38,10 @@ public class RestaurantModel {
 
     public String getImageId() {
         return imageId;
+    }
+
+    public String getPlaceId() {
+        return placeId;
     }
 
     public boolean getIsFavorite() {
