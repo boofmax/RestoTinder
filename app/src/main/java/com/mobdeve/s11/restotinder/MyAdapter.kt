@@ -1,6 +1,7 @@
 package com.mobdeve.s11.restotinder
 
 import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,18 +51,30 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
         })
 
         holder.setRatingOnClickListener(View.OnClickListener {
-            val intent = Intent(holder.itemView.context, UserRatings::class.java)
-            intent.putExtra("restaurantName", data[holder.adapterPosition].name)
-            intent.putExtra("restaurantRating", data[holder.adapterPosition].rating)
-            holder.itemView.context.startActivity(intent)
+            val placeId = data[holder.adapterPosition].placeId
+
+            // Check if Google Maps is installed on the device
+            val mapIntent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=place_id:$placeId"))
+            mapIntent.setPackage("com.google.android.apps.maps")
+
+            if (mapIntent.resolveActivity(holder.itemView.context.packageManager) != null) {
+                holder.itemView.context.startActivity(mapIntent)
+            } else {
+                Toast.makeText(
+                    holder.itemView.context,
+                    "Google Maps is not installed on your device.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         })
 
         holder.setMapOnClickListener(View.OnClickListener {
             val intent = Intent(holder.itemView.context, MapsActivity::class.java)
-           // intent.putExtra("restaurantName", data[holder.adapterPosition].name)
-           // intent.putExtra("restaurantLocation", data[holder.adapterPosition].location)
+            intent.putExtra("restaurantLatitude", data[position].latitude)
+            intent.putExtra("restaurantLongitude", data[position].longitude)
             holder.itemView.context.startActivity(intent)
-        })
+        }, data[position])
+
     }
 
 }

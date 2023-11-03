@@ -38,6 +38,8 @@ public class DataGenerator {
             String address = result.vicinity;
             String placeId = result.placeId;
             double rating = result.rating;
+            double latitude = result.geometry.location.lat;
+            double longitude = result.geometry.location.lng;
             if(result.photos != null) {
                 icon = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + result.photos[0].photoReference + "&key=" + "AIzaSyACiFUGdPCbbEHfCMXqtBa2RzuvOYAtptM";
             }
@@ -45,7 +47,7 @@ public class DataGenerator {
                 icon = "https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg";
             }
 
-            data.add(new RestaurantModel(name, address, 1, rating, icon, false, placeId));
+            data.add(new RestaurantModel(name, address, 1, rating, icon, false, placeId, latitude, longitude));
         }
         return data;
     }

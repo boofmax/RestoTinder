@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.app.ActivityCompat
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -19,6 +20,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+
+    private var restaurantLatitude: Double = 14.5648 // default dlsu
+    private var restaurantLongitude: Double = 120.9932 // default dlsu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,13 +79,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             // for ActivityCompat#requestPermissions for more details.
             return
         }
+        val restaurantLatitude = intent.getDoubleExtra("restaurantLatitude", 14.5648)
+        val restaurantLongitude = intent.getDoubleExtra("restaurantLongitude", 120.9932)
         mMap.isMyLocationEnabled = true // enable location tracking
         mMap.uiSettings.isMyLocationButtonEnabled = true // enable location button
-
-        val defaultLocation = LatLng(14.56593840313714, 120.9929982308952) // default location to DLSU
-        mMap.addMarker(MarkerOptions().position(defaultLocation).title("Marker in DLSU"))
+        val restaurantLocation = LatLng(restaurantLatitude,restaurantLongitude)
         val zoomLevel = 15.0f  // Adjust this value to control the zoom level
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, zoomLevel))
+        // Add marker
+        mMap.addMarker(MarkerOptions().position(restaurantLocation).title("Restaurant"))
+
+        // Center camera
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(restaurantLocation))
+
+        // Fix zoom
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restaurantLocation, zoomLevel))
     }
 }
