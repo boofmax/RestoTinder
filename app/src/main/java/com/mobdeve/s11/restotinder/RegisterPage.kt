@@ -1,6 +1,5 @@
 package com.mobdeve.s11.restotinder
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button

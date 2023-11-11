@@ -12,7 +12,7 @@ import com.mobdeve.s11.restotinder.R
 
 class landingPage : ComponentActivity(){
     //load data
-    private val restaurants: ArrayList<RestaurantModel> = DataGenerator.loadData()
+    //private val restaurants: ArrayList<RestaurantModel> = DataGenerator.loadData()
 
     //Our RecyclerView
     private lateinit var recyclerView: RecyclerView

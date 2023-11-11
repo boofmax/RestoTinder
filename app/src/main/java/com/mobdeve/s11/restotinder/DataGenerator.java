@@ -22,21 +22,21 @@ public class DataGenerator {
 
     static DecimalFormat decimalFormat = new DecimalFormat("#.#");
 
-    public static ArrayList<RestaurantModel> loadData() throws IOException, InterruptedException, ApiException {
+    public static ArrayList<RestaurantModel> loadData(double curLatitude, double curLongitude) throws IOException, InterruptedException, ApiException {
         ArrayList<RestaurantModel> data = new ArrayList<RestaurantModel>();
         String icon = "https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg";
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey("AIzaSyACiFUGdPCbbEHfCMXqtBa2RzuvOYAtptM")
                 .build();
 
-        LatLng location = new LatLng(14.56593840313714, 120.9929982308952); // hard coded dlsu
+        LatLng location = new LatLng(curLatitude, curLongitude); // hard coded dlsu
 
         PlacesSearchResponse response = PlacesApi.nearbySearchQuery(context, location)
                 .radius(1000)
                 .type(PlaceType.RESTAURANT).await();
 
         for(
-                PlacesSearchResult result : response.results){
+            PlacesSearchResult result : response.results){
             String name = result.name;
             String address = result.vicinity;
             String placeId = result.placeId;

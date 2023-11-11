@@ -65,7 +65,7 @@ public class RestaurantModel {
 
     @Override
     public String toString() {
-        return "PokemonModel{" +
+        return "RestaurantModel{" +
                 "name='" + name + '\'' +
                 ", location='" + location + '\'' +
                 ", pricing='" + pricing + '\'' +
