@@ -30,7 +30,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
             restaurantName.text = character.name
             restaurantLocation.text = character.location
             restaurantPricing.text = character.pricing.toString()
-            restaurantRatings.text = character.rating.toString()
+            restaurantRatings.text = character.rating.toString().plus(" / 5.0")
     }
 
     fun setDeleteOnClickListener(onClickListener: View.OnClickListener){
