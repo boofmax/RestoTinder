@@ -51,10 +51,10 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
         })
 
         holder.setRatingOnClickListener(View.OnClickListener {
-            val placeId = data[holder.adapterPosition].placeId
+            val placeName = data[holder.adapterPosition].name
 
             // Check if Google Maps is installed on the device
-            val mapIntent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=place_id:$placeId"))
+            val mapIntent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=$placeName"))
             mapIntent.setPackage("com.google.android.apps.maps")
 
             if (mapIntent.resolveActivity(holder.itemView.context.packageManager) != null) {
