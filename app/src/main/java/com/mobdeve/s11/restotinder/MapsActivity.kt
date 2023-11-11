@@ -29,19 +29,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         supportActionBar?.hide() // remove action bar
 
-        val locationPermission = arrayOf(
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        )
-
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(this, locationPermission, 1)
-        }
-
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -62,28 +49,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
-        }
+
         val restaurantLatitude = intent.getDoubleExtra("restaurantLatitude", 14.5648)
         val restaurantLongitude = intent.getDoubleExtra("restaurantLongitude", 120.9932)
         mMap.isMyLocationEnabled = true // enable location tracking
         mMap.uiSettings.isMyLocationButtonEnabled = true // enable location button
-        val restaurantLocation = LatLng(restaurantLatitude,restaurantLongitude)
+        val restaurantLocation = LatLng(restaurantLatitude, restaurantLongitude)
         val zoomLevel = 15.0f  // Adjust this value to control the zoom level
 
         // Add marker

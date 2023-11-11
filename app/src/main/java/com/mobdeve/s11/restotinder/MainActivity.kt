@@ -18,6 +18,7 @@ import com.mobdeve.s11.restotinder.MyAdapter
 import com.mobdeve.s11.restotinder.R
 import com.mobdeve.s11.restotinder.RestaurantModel
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var restaurants: ArrayList<RestaurantModel>
     private lateinit var recyclerView: RecyclerView
@@ -33,15 +34,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         this.recyclerView = findViewById(R.id.recyclerView)
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        recyclerView.layoutManager = layoutManager
-        val snapHelper: SnapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(recyclerView)
-
         // Initialize restaurants with an empty list to avoid null reference
         restaurants = loadRestaurants()
         recyclerView.adapter = MyAdapter(restaurants)
+
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        recyclerView.layoutManager = layoutManager
+
+        val snapHelper: SnapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(this.recyclerView)
+
+
 
 
     }
