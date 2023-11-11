@@ -12,12 +12,15 @@ import com.mobdeve.s11.restotinder.R;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
 public class DataGenerator {
     public DataGenerator() throws IOException, InterruptedException, ApiException {
     }
+
+    static DecimalFormat decimalFormat = new DecimalFormat("#.#");
 
     public static ArrayList<RestaurantModel> loadData() throws IOException, InterruptedException, ApiException {
         ArrayList<RestaurantModel> data = new ArrayList<RestaurantModel>();
@@ -37,7 +40,7 @@ public class DataGenerator {
             String name = result.name;
             String address = result.vicinity;
             String placeId = result.placeId;
-            double rating = result.rating;
+            double rating = Double.parseDouble(decimalFormat.format(result.rating));
             double latitude = result.geometry.location.lat;
             double longitude = result.geometry.location.lng;
             if(result.photos != null) {
