@@ -14,7 +14,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     private val restaurantImage: ImageView = itemView.findViewById(R.id.ivRestaurantImage)
     private val restaurantName: TextView= itemView.findViewById(R.id.tvRestaurantName)
     private val restaurantLocation: TextView= itemView.findViewById(R.id.tvLocation)
-    private val restaurantPricing: TextView= itemView.findViewById(R.id.tvPricing)
+    private val restaurantOpenHours: TextView= itemView.findViewById(R.id.tvOpenHours)
     private val restaurantRatings: TextView= itemView.findViewById(R.id.tvRatings)
     private val delButton: ImageButton = itemView.findViewById(R.id.delButton)
     private val btnFavorite: ImageButton = itemView.findViewById(R.id.btnFavorite)
@@ -29,7 +29,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
                 .into(restaurantImage)
             restaurantName.text = character.name
             restaurantLocation.text = character.location
-            restaurantPricing.text = character.pricing.toString()
+            restaurantOpenHours.text = character.pricing.toString()
             restaurantRatings.text = character.rating.toString().plus(" / 5.0")
     }
 

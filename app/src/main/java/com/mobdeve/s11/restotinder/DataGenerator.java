@@ -36,10 +36,11 @@ public class DataGenerator {
                 .type(PlaceType.RESTAURANT).await();
 
         for(
-            PlacesSearchResult result : response.results){
+                PlacesSearchResult result : response.results){
             String name = result.name;
             String address = result.vicinity;
             String placeId = result.placeId;
+            String open = "OPERATIONAL".equals(result.businessStatus) ? "Open" : "Closed";
             double rating = Double.parseDouble(decimalFormat.format(result.rating));
             double latitude = result.geometry.location.lat;
             double longitude = result.geometry.location.lng;
@@ -50,7 +51,7 @@ public class DataGenerator {
                 icon = "https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg";
             }
 
-            data.add(new RestaurantModel(name, address, 1, rating, icon, false, placeId, latitude, longitude));
+            data.add(new RestaurantModel(name, address, open, rating, icon, false, placeId, latitude, longitude));
         }
         return data;
     }

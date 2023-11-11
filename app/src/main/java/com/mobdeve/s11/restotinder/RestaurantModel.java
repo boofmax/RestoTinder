@@ -1,8 +1,7 @@
 package com.mobdeve.s11.restotinder;
 
 public class RestaurantModel {
-    private String name, location, imageId, placeId;
-    private int pricing;
+    private String name, location, imageId, placeId, open;
 
     private double latitude, longitude;
 
@@ -10,11 +9,11 @@ public class RestaurantModel {
     private boolean isFavorite = false;
 
 
-    public RestaurantModel(String name, String location, int pricing, double rating, String imageId, boolean isFavorite, String placeId, double latitude, double longitude) {
+    public RestaurantModel(String name, String location, String open, double rating, String imageId, boolean isFavorite, String placeId, double latitude, double longitude) {
 
         this.name = name;
         this.location = location;
-        this.pricing = pricing;
+        this.open = open;
         this.rating = rating;
         this.imageId = imageId;
         this.isFavorite = isFavorite;
@@ -31,8 +30,8 @@ public class RestaurantModel {
         return location;
     }
 
-    public int getPricing() {
-        return pricing;
+    public String getPricing() {
+        return open;
     }
 
     public double getRating() {
@@ -68,7 +67,7 @@ public class RestaurantModel {
         return "RestaurantModel{" +
                 "name='" + name + '\'' +
                 ", location='" + location + '\'' +
-                ", pricing='" + pricing + '\'' +
+                ", open='" + open + '\'' +
                 ", rating='" + rating + '\'' +
                 ", imageId=" + imageId +
                 '}';

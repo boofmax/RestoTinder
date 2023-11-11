@@ -63,11 +63,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvPriceHeader"
+                android:id="@+id/tvStatusHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="PRICING"
+                android:text="STATUS"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pokeDescription"
@@ -75,7 +75,7 @@
 
             <!-- Places Atmosphere: price_level -->
             <TextView
-                android:id="@+id/tvPricing"
+                android:id="@+id/tvOpenHours"
                 android:layout_width="162dp"
                 android:layout_height="21dp"
                 android:layout_marginTop="1dp"
