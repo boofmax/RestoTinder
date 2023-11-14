@@ -45,11 +45,20 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
+        <activity android:name="com.mobdeve.s11.restotinder.landingPage"
+            android:exported="true"
+            android:label="landingPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name="com.mobdeve.s11.restotinder.RegisterPage"
+            android:exported="true"
+            android:label="RegisterPage"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
     </application>
 
