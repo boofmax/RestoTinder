@@ -2,18 +2,28 @@ package com.mobdeve.s11.restotinder
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.mobdeve.s11.restotinder.R
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adapter<MyViewHolder>() {
+    companion object {
+        private const val TAG = "RegisterPage"
+    }
+
+    private lateinit var dbRef: FirebaseFirestore
+    private lateinit var username: String
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.item_layout, parent, false)
-
+        dbRef = Firebase.firestore
         return MyViewHolder(view)
     }
 
@@ -35,18 +45,46 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
         })
 
         holder.setFavoriteOnClickListener(View.OnClickListener {
+            val favorited_object_info = data[holder.getBindingAdapterPosition()]
+            val collectionReference = dbRef.collection(MyFirestoreReferences.FAVORITE_COLLECTION)
             if(holder.isFavorite){
-                Toast.makeText(
-                    holder.itemView.context,
-                    "Restaurant Removed from Favorites: " + data[holder.adapterPosition].name,
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
                 Toast.makeText(
                     holder.itemView.context,
                     "Restaurant Added to Favorites: " + data[holder.adapterPosition].name,
                     Toast.LENGTH_SHORT
                 ).show()
+
+                /**?
+                 * const val imageId_FIELD = "imageId"
+                 *     const val isFavorite_FIELD = "isFavorite"
+                 *     const val location_FIELD = "location"
+                 *     const val name_FIELD = "name"
+                 *     const val pricing_FIELD = "pricing"
+                 *     const val rating_FIELD = "rating"
+                 */
+                collectionReference.add(this.populate_hashmap(favorited_object_info))
+                Log.d(TAG, "SUCC BALLS")//data[holder.getBindingAdapterPosition()])
+                /*
+                * Utilize update and get of firestore
+                * Check how to call the update method.
+                * Check how to call the delete method
+                *
+                * After loading Places API,
+                * [1] Get Places API
+                * [2] Check if user has existing records (Favorites)
+                * [3] Compare if restorant is present in favorites
+                *   - If present, isFavorite is True.
+                * */
+            } else {
+                Toast.makeText(
+                    holder.itemView.context,
+                    "Restaurant Removed from Favorites: " + data[holder.adapterPosition].name,
+                    Toast.LENGTH_SHORT
+                ).show()
+                val imageIdToDelete = favorited_object_info.imageId
+                val usernameToDelete = this.username
+                this.delete_favorite(collectionReference, usernameToDelete, imageIdToDelete)
+                Log.d(TAG, "DEEZ NUTS")
             }
         })
 
@@ -75,6 +113,52 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
             holder.itemView.context.startActivity(intent)
         }, data[position])
 
+        holder.setProfileOnClickListener(View.OnClickListener {
+            val intent = Intent(holder.itemView.context, FavoritesList::class.java)
+            Log.d(TAG, "DIED HERE")
+            holder.itemView.context.startActivity(intent)
+
+        })
+    }
+    fun setUsername(username: String) {
+        this.username = username
+    }
+
+    fun populate_hashmap(favorited_object_info: RestaurantModel): MutableMap<String, Any?> {
+        val favorited_object: MutableMap<String, Any?> = HashMap()
+        favorited_object[MyFirestoreReferences.imageId_FIELD] = favorited_object_info.imageId
+        favorited_object[MyFirestoreReferences.isFavorite_FIELD] = true
+        favorited_object[MyFirestoreReferences.location_FIELD] = favorited_object_info.location
+        favorited_object[MyFirestoreReferences.name_FIELD] = favorited_object_info.name
+        favorited_object[MyFirestoreReferences.pricing_FIELD] = favorited_object_info.pricing
+        favorited_object[MyFirestoreReferences.rating_FIELD] = favorited_object_info.rating
+        favorited_object[MyFirestoreReferences.USER_FIELD] = this.username
+        return favorited_object
+    }
+    fun delete_favorite(collectionReference : CollectionReference, usernameToDelete: String, imageIdToDelete: String){
+        val query = collectionReference
+            .whereEqualTo("imageId", imageIdToDelete)
+            .whereEqualTo("username",usernameToDelete)
+
+        query.get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    // Delete the document(s) found by the query
+                    document.reference.delete()
+                        .addOnSuccessListener {
+                            // Handle successful deletion
+                            println("Document successfully deleted!")
+                        }
+                        .addOnFailureListener { e ->
+                            // Handle deletion failure
+                            println("Error deleting document: $e")
+                        }
+                }
+            }
+            .addOnFailureListener { e ->
+                // Handle query failure
+                println("Error querying documents: $e")
+            }
     }
 
 }

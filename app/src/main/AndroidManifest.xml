@@ -60,6 +60,11 @@
             android:label="RegisterPage"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+        <activity android:name="com.mobdeve.s11.restotinder.FavoritesList"
+            android:exported="true"
+            android:label="FavoritesList"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

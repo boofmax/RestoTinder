@@ -8,9 +8,9 @@ object MyFirestoreReferences {
     const val PASSWORD_FIELD = "password"
 
     const val imageId_FIELD = "imageId"
-    const val isFavorite_FIELD = false
+    const val isFavorite_FIELD = "isFavorite"
     const val location_FIELD = "location"
     const val name_FIELD = "name"
-    const val pricing_FIELD = 0
-    const val rating_FIELD = 0
+    const val pricing_FIELD = "pricing"
+    const val rating_FIELD = "rating"
 }

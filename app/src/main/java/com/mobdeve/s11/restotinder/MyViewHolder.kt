@@ -20,6 +20,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     private val btnFavorite: ImageButton = itemView.findViewById(R.id.btnFavorite)
     private val mapButton: ImageButton = itemView.findViewById(R.id.mapButton)
     private val linearLayoutRating : LinearLayout = itemView.findViewById(R.id.linearLayoutRating)
+    private val profileButton: ImageButton = itemView.findViewById(R.id.btnProfile)
 
     var isFavorite: Boolean = false // default value
         fun bindData(character: RestaurantModel) {
@@ -66,5 +67,11 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
         }
     }
 
+    fun setProfileOnClickListener(onClickListener: View.OnClickListener){
+        profileButton.setOnClickListener{
+            val intent = Intent(itemView.context, FavoritesList::class.java)
+            itemView.context.startActivity(intent)
+        }
+    }
 
 }

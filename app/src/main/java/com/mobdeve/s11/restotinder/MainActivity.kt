@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var restaurants: ArrayList<RestaurantModel>
     private lateinit var recyclerView: RecyclerView
 
+    private lateinit var username : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,9 +36,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         this.recyclerView = findViewById(R.id.recyclerView)
+        username = intent.getStringExtra("uname").toString()
+
         // Initialize restaurants with an empty list to avoid null reference
         restaurants = loadRestaurants()
-        recyclerView.adapter = MyAdapter(restaurants)
+        var adapterObject  = MyAdapter(restaurants)
+        adapterObject.setUsername(username)
+
+        this.recyclerView.adapter = adapterObject
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL

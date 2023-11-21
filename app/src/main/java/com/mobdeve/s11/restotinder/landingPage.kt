@@ -79,6 +79,7 @@ class landingPage : ComponentActivity(){
 
     private fun moveToRestoPageActivity(username: String){
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("uname", username)
         //we can also pass the username later on. for aesthetic.
 
         startActivity(intent)
