@@ -115,7 +115,7 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
 
         holder.setProfileOnClickListener(View.OnClickListener {
             val intent = Intent(holder.itemView.context, FavoritesList::class.java)
-            Log.d(TAG, "DIED HERE")
+            intent.putExtra("uname",this.username)
             holder.itemView.context.startActivity(intent)
 
         })

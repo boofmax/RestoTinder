@@ -21,7 +21,17 @@ public class RestaurantModel {
         this.latitude = latitude;
         this.longitude = longitude;
     }
-
+    public RestaurantModel(String imageId, boolean isFavorite, String location, String name, String status, double rating) {
+        this.imageId = imageId;
+        this.isFavorite = isFavorite;
+        this.location = location;
+        this.name = name;
+        this.open = status;
+        this.rating = rating;
+        this.placeId = "";
+        this.latitude = 0;
+        this.longitude = 0;
+    }
     public String getName() {
         return name;
     }

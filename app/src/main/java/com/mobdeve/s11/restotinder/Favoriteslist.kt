@@ -31,42 +31,46 @@ class FavoritesList : AppCompatActivity() {
 
         dbRef = Firebase.firestore
         val favoritesRef = dbRef.collection(MyFirestoreReferences.FAVORITE_COLLECTION)
-
-        username = intent.getStringExtra("uname").toString()
-        val query = favoritesRef
-            .whereEqualTo(MyFirestoreReferences.USER_FIELD, username)
-        Log.d(TAG, "HERE $query")
-        try {
-            query.get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    restaurants = ArrayList() // Initialize restaurants here
-                    for (document in task.result!!) {
-                        // Handle each matching document here
-                        // document.data gives you the data of the document
-                        Log.d(TAG, "Document Instance: $document")
+        val username = intent.getStringExtra("uname").toString()
+        Log.d("LOGGINGSTUF", "Entered")
+        favoritesRef
+            .get()
+            .addOnSuccessListener { result ->
+                restaurants = ArrayList()
+                for (document in result) {
+                    if (document.getString("username") == username) {
+                        Log.d("TEST WORK", "${document.id} => ${document.data}")
+                        val resto = document.getString(MyFirestoreReferences.rating_FIELD)?.let {
+                            RestaurantModel(
+                                document.getString(MyFirestoreReferences.imageId_FIELD),
+                                document.getString(MyFirestoreReferences.isFavorite_FIELD).toBoolean(),
+                                document.getString(MyFirestoreReferences.location_FIELD),
+                                document.getString(MyFirestoreReferences.name_FIELD),
+                                document.getString(MyFirestoreReferences.pricing_FIELD),
+                                it.toDouble()
+                            )
+                        }
+                        if (resto != null) {
+                            restaurants.add(resto)
+                        }
                     }
-
-                    // After initializing restaurants, set up the adapter
-                    val adapterObject = MyAdapter(restaurants)
-                    adapterObject.setUsername(username)
-
-                    recyclerView.adapter = adapterObject
-                } else {
-                    Log.d(TAG, "Error getting documents: ", task.exception)
                 }
+
+                Log.d("LOGGINGSTUF", "Left")
+                Log.d(TAG, "Restaurant Stuf to Display: " + restaurants.joinToString("\n"))
+
+                recyclerView = findViewById(R.id.recyclerViewFavorites)
+
+                val layoutManager = LinearLayoutManager(this)
+                layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                recyclerView.layoutManager = layoutManager
+                val snapHelper: SnapHelper = PagerSnapHelper()
+                snapHelper.attachToRecyclerView(recyclerView)
+
+                // Now you can initialize your adapter and set it to the RecyclerView
+                val adapterObject = MyAdapter(restaurants)
+                adapterObject.setUsername(username)
+                recyclerView.adapter = adapterObject
             }
-
-        }
-        catch (e: Exception) {
-            Log.d(TAG, "NOMNOM")
-        }
-
-        recyclerView = findViewById(R.id.recyclerViewFavorites)
-
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        recyclerView.layoutManager = layoutManager
-        val snapHelper: SnapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(recyclerView)
     }
 }

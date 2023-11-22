@@ -1,12 +1,16 @@
 package com.mobdeve.s11.restotinder
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,14 +29,29 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var username : String
 
+    private val FAVORITES_LIST_REQUEST_CODE = 100
+    private val favoritesListLauncher: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // Handle the result here
+                Log.d("MainActivity", "FavoritesList has finished loading data.")
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Initialize restaurants with an empty list to avoid null reference
+        restaurants = ArrayList()
 
         // Request location permissions if not granted
         if (checkLocationPermissions()) {
             Log.d("Perms", "onCreate: Permission granted")
             loadRestaurants()
+
+            // Load restaurants data with startActivityForResult
+
         }
 
         this.recyclerView = findViewById(R.id.recyclerView)
@@ -118,7 +137,16 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        if (requestCode == FAVORITES_LIST_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                // FavoritesList has finished loading data
+                Log.d("MainActivity", "FavoritesList has finished loading data.")
+            }
+        }
+    }
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
