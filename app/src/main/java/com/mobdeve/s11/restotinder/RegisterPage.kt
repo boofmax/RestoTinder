@@ -77,6 +77,7 @@ class RegisterPage : ComponentActivity() {
                     .addOnFailureListener{ e -> Log.w(TAG, "Error adding user",e)}
 
                 val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("uname", enteredUname)
                 startActivity(intent)
                 Toast.makeText(applicationContext, "Welcome, $enteredUname!", Toast.LENGTH_SHORT).show()
             }

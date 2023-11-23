@@ -40,20 +40,11 @@ class MainActivity : AppCompatActivity() {
     private val FAVORITES_LIST_REQUEST_CODE = 100
     private lateinit var dbRef: FirebaseFirestore
 
-    //Load everyting here in the mainActivity
-    // Pass it to next activity. using intent puExtra
-    // Or create another kotlin file to serve as data holder. Use data class, insided it is a companion object. Object parameters could be REstaurnatModel
-    private val favoritesListLauncher: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                // Handle the result here
-                Log.d("MainActivity", "FavoritesList has finished loading data.")
-            }
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         dbRef = Firebase.firestore
         val favoritesRef = dbRef.collection(MyFirestoreReferences.FAVORITE_COLLECTION)
         username = intent.getStringExtra("uname").toString()
@@ -99,10 +90,6 @@ class MainActivity : AppCompatActivity() {
 
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(this.recyclerView)
-
-
-
-
     }
 
     private suspend fun loadFavorites(favoritesRef: CollectionReference): ArrayList<RestaurantModel> {

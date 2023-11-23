@@ -22,6 +22,9 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
     private lateinit var dbRef: FirebaseFirestore
     private lateinit var username: String
     private lateinit var favoriteRestos :ArrayList<RestaurantModel>
+    //private lateinit var test_favorite: FavoritesList
+
+    //private lateinit var intent: Intent
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.item_layout, parent, false)
@@ -98,6 +101,7 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
                 Log.d(TAG, "Current Restaurants after removal" + this.favoriteRestos.joinToString("\n"))
                 Log.d(TAG, "DEEZ NUTS")
             }
+
         })
 
         holder.setRatingOnClickListener(View.OnClickListener {
@@ -125,9 +129,10 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
             holder.itemView.context.startActivity(intent)
         }, data[position])
 
-        holder.setProfileOnClickListener(View.OnClickListener {
+        holder.setProfileOnClickListener(View.OnClickListener{
             val intent = Intent(holder.itemView.context, FavoritesList::class.java)
-            intent.putExtra("uname",this.username)
+            Log.d(TAG, "To pass this " + this.username)
+            intent.putExtra("FavoriteUname",this.username)
 //            intent.putExtra("favoriteRestos", this.favoriteRestos)        // ISSUE: Depracated si getter.
             holder.itemView.context.startActivity(intent)
 

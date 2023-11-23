@@ -68,10 +68,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     }
 
     fun setProfileOnClickListener(onClickListener: View.OnClickListener){
-        profileButton.setOnClickListener{
-            val intent = Intent(itemView.context, FavoritesList::class.java)
-            itemView.context.startActivity(intent)
-        }
+        profileButton.setOnClickListener(onClickListener)
     }
 
 }
