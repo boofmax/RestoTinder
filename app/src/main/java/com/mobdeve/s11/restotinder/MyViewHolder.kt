@@ -30,7 +30,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
                 .into(restaurantImage)
             restaurantName.text = character.name
             restaurantLocation.text = character.location
-            restaurantOpenHours.text = character.pricing.toString()
+            restaurantOpenHours.text = character.open.toString()
             restaurantRatings.text = character.rating.toString().plus(" / 5.0")
     }
 

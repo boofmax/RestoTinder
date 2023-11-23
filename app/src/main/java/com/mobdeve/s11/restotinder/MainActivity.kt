@@ -13,14 +13,22 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import com.google.android.gms.tasks.Tasks
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.mobdeve.s11.restotinder.DataGenerator
 import com.mobdeve.s11.restotinder.MyAdapter
 import com.mobdeve.s11.restotinder.R
 import com.mobdeve.s11.restotinder.RestaurantModel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +38,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var username : String
 
     private val FAVORITES_LIST_REQUEST_CODE = 100
+    private lateinit var dbRef: FirebaseFirestore
+
+    //Load everyting here in the mainActivity
+    // Pass it to next activity. using intent puExtra
+    // Or create another kotlin file to serve as data holder. Use data class, insided it is a companion object. Object parameters could be REstaurnatModel
     private val favoritesListLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -41,7 +54,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        dbRef = Firebase.firestore
+        val favoritesRef = dbRef.collection(MyFirestoreReferences.FAVORITE_COLLECTION)
+        username = intent.getStringExtra("uname").toString()
 
+        //var favoritedRestos = loadFavoritesBlocking(favoritesRef)
         // Initialize restaurants with an empty list to avoid null reference
         restaurants = ArrayList()
 
@@ -55,14 +72,26 @@ class MainActivity : AppCompatActivity() {
         }
 
         this.recyclerView = findViewById(R.id.recyclerView)
-        username = intent.getStringExtra("uname").toString()
-
+/*
         // Initialize restaurants with an empty list to avoid null reference
         restaurants = loadRestaurants()
         var adapterObject  = MyAdapter(restaurants)
         adapterObject.setUsername(username)
+        //adapterObject.setFavoriteRestos(favoritedRestos)
 
         this.recyclerView.adapter = adapterObject
+*/
+        lifecycleScope.launch {
+            // Inside the coroutine, you can call your suspend function
+            val favoritedRestos = loadFavorites(favoritesRef)
+
+            // Use the loaded data to update UI or perform any necessary actions
+            // For example:
+            val adapterObject = MyAdapter(restaurants)
+            adapterObject.setUsername(username)
+            adapterObject.setFavoriteRestos(favoritedRestos)
+            recyclerView.adapter = adapterObject
+        }
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -75,6 +104,35 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+    private suspend fun loadFavorites(favoritesRef: CollectionReference): ArrayList<RestaurantModel> {
+        val restaurants = ArrayList<RestaurantModel>()
+        Log.d("LOGGINGSTUF", "Entered")
+
+        try {
+            val result = favoritesRef.get().await()
+
+            for (document in result) {
+                if (document.getString("username") == username) {
+                    Log.d("IT ENTERED MY BOI", "${document.id} => ${document.data}")
+                    val isFavorite = document.getBoolean(MyFirestoreReferences.isFavorite_FIELD) ?: false
+                    val imageId = document.getString(MyFirestoreReferences.imageId_FIELD)
+                    val location = document.getString(MyFirestoreReferences.location_FIELD)
+                    val name = document.getString(MyFirestoreReferences.name_FIELD)
+                    val pricing = document.get(MyFirestoreReferences.pricing_FIELD)?.toString()
+                    val rating = document.getDouble(MyFirestoreReferences.rating_FIELD) ?: 0.0
+
+                    val resto = RestaurantModel(imageId, isFavorite, location, name, pricing, rating)
+                    restaurants.add(resto)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("FirestoreError", "Error loading favorites", e)
+        }
+
+        return restaurants
+    }
+
 
     private fun loadRestaurants(): ArrayList<RestaurantModel> {
         // Initialize the location manager

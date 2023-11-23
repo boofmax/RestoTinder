@@ -1,6 +1,7 @@
 package com.mobdeve.s11.restotinder
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,8 @@ class FavoritesList : AppCompatActivity() {
     companion object {
         private const val TAG = "FavoritesList"
     }
+
+    private lateinit var favoriteRestos: ArrayList<RestaurantModel>
 
     // Load data
     private lateinit var restaurants: ArrayList<RestaurantModel>
@@ -31,46 +34,14 @@ class FavoritesList : AppCompatActivity() {
 
         dbRef = Firebase.firestore
         val favoritesRef = dbRef.collection(MyFirestoreReferences.FAVORITE_COLLECTION)
-        val username = intent.getStringExtra("uname").toString()
-        Log.d("LOGGINGSTUF", "Entered")
-        favoritesRef
-            .get()
-            .addOnSuccessListener { result ->
-                restaurants = ArrayList()
-                for (document in result) {
-                    if (document.getString("username") == username) {
-                        Log.d("TEST WORK", "${document.id} => ${document.data}")
-                        val resto = document.getString(MyFirestoreReferences.rating_FIELD)?.let {
-                            RestaurantModel(
-                                document.getString(MyFirestoreReferences.imageId_FIELD),
-                                document.getString(MyFirestoreReferences.isFavorite_FIELD).toBoolean(),
-                                document.getString(MyFirestoreReferences.location_FIELD),
-                                document.getString(MyFirestoreReferences.name_FIELD),
-                                document.getString(MyFirestoreReferences.pricing_FIELD),
-                                it.toDouble()
-                            )
-                        }
-                        if (resto != null) {
-                            restaurants.add(resto)
-                        }
-                    }
-                }
+        username = intent.getStringExtra("uname").toString()
 
-                Log.d("LOGGINGSTUF", "Left")
-                Log.d(TAG, "Restaurant Stuf to Display: " + restaurants.joinToString("\n"))
-
-                recyclerView = findViewById(R.id.recyclerViewFavorites)
-
-                val layoutManager = LinearLayoutManager(this)
-                layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-                recyclerView.layoutManager = layoutManager
-                val snapHelper: SnapHelper = PagerSnapHelper()
-                snapHelper.attachToRecyclerView(recyclerView)
-
-                // Now you can initialize your adapter and set it to the RecyclerView
-                val adapterObject = MyAdapter(restaurants)
-                adapterObject.setUsername(username)
-                recyclerView.adapter = adapterObject
-            }
+        /*
+       * TODO:
+       *  1. Retrieve favorites from MyAadapter
+       *  2. Display the list of favorites of the user
+       * */
+        //favoriteRestos = intent.getSerializableExtra("favoriteRestos") as ArrayList<RestaurantModel> // ISSUE: Depracated
+        //Log.d(TAG, "Received Restaurants: " + this.favoriteRestos?.joinToString("\n"))
     }
 }

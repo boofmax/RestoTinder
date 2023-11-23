@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -15,15 +16,18 @@ import com.google.firebase.ktx.Firebase
 
 class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adapter<MyViewHolder>() {
     companion object {
-        private const val TAG = "RegisterPage"
+        private const val TAG = "MyAdapter"
     }
 
     private lateinit var dbRef: FirebaseFirestore
     private lateinit var username: String
+    private lateinit var favoriteRestos :ArrayList<RestaurantModel>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.item_layout, parent, false)
         dbRef = Firebase.firestore
+        //favoriteRestos = loadFavoritesBlocking(dbRef.collection(MyFirestoreReferences.FAVORITE_COLLECTION))
+
         return MyViewHolder(view)
     }
 
@@ -45,6 +49,7 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
         })
 
         holder.setFavoriteOnClickListener(View.OnClickListener {
+            Log.d(TAG, "Current Restaurants" + this.favoriteRestos.joinToString("\n"))
             val favorited_object_info = data[holder.getBindingAdapterPosition()]
             val collectionReference = dbRef.collection(MyFirestoreReferences.FAVORITE_COLLECTION)
             if(holder.isFavorite){
@@ -63,6 +68,8 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
                  *     const val rating_FIELD = "rating"
                  */
                 collectionReference.add(this.populate_hashmap(favorited_object_info))
+                this.favoriteRestos.add(favorited_object_info)
+                Log.d(TAG, "Current Restaurants after addition" + this.favoriteRestos.joinToString("\n"))
                 Log.d(TAG, "SUCC BALLS")//data[holder.getBindingAdapterPosition()])
                 /*
                 * Utilize update and get of firestore
@@ -76,6 +83,9 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
                 *   - If present, isFavorite is True.
                 * */
             } else {
+                val existingFavorite = favoriteRestos.find {
+                    it.name == favorited_object_info.name && it.location == favorited_object_info.location
+                }
                 Toast.makeText(
                     holder.itemView.context,
                     "Restaurant Removed from Favorites: " + data[holder.adapterPosition].name,
@@ -84,6 +94,8 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
                 val imageIdToDelete = favorited_object_info.imageId
                 val usernameToDelete = this.username
                 this.delete_favorite(collectionReference, usernameToDelete, imageIdToDelete)
+                this.favoriteRestos.remove(existingFavorite)
+                Log.d(TAG, "Current Restaurants after removal" + this.favoriteRestos.joinToString("\n"))
                 Log.d(TAG, "DEEZ NUTS")
             }
         })
@@ -116,6 +128,7 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
         holder.setProfileOnClickListener(View.OnClickListener {
             val intent = Intent(holder.itemView.context, FavoritesList::class.java)
             intent.putExtra("uname",this.username)
+//            intent.putExtra("favoriteRestos", this.favoriteRestos)        // ISSUE: Depracated si getter.
             holder.itemView.context.startActivity(intent)
 
         })
@@ -124,13 +137,17 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
         this.username = username
     }
 
+    fun setFavoriteRestos(favoriteRestos: ArrayList<RestaurantModel>) {
+        this.favoriteRestos = favoriteRestos
+    }
+
     fun populate_hashmap(favorited_object_info: RestaurantModel): MutableMap<String, Any?> {
         val favorited_object: MutableMap<String, Any?> = HashMap()
         favorited_object[MyFirestoreReferences.imageId_FIELD] = favorited_object_info.imageId
         favorited_object[MyFirestoreReferences.isFavorite_FIELD] = true
         favorited_object[MyFirestoreReferences.location_FIELD] = favorited_object_info.location
         favorited_object[MyFirestoreReferences.name_FIELD] = favorited_object_info.name
-        favorited_object[MyFirestoreReferences.pricing_FIELD] = favorited_object_info.pricing
+        favorited_object[MyFirestoreReferences.pricing_FIELD] = favorited_object_info.open
         favorited_object[MyFirestoreReferences.rating_FIELD] = favorited_object_info.rating
         favorited_object[MyFirestoreReferences.USER_FIELD] = this.username
         return favorited_object
