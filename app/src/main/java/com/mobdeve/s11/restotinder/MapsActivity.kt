@@ -36,6 +36,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+        Log.d("MapsActivity", "onCreate: Map ready")
     }
 
     /**
@@ -49,14 +50,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
+        Log.d("MapsActivity", "onMapReady First")
         val restaurantLatitude = intent.getDoubleExtra("restaurantLatitude", 14.5648)
         val restaurantLongitude = intent.getDoubleExtra("restaurantLongitude", 120.9932)
         mMap.isMyLocationEnabled = true // enable location tracking
         mMap.uiSettings.isMyLocationButtonEnabled = true // enable location button
         val restaurantLocation = LatLng(restaurantLatitude, restaurantLongitude)
         val zoomLevel = 15.0f  // Adjust this value to control the zoom level
-
+        Log.d("MapsActivity", "onMapReady Second")
         // Add marker
         mMap.addMarker(MarkerOptions().position(restaurantLocation).title("Restaurant"))
 

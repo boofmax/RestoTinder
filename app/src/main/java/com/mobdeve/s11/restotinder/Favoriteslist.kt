@@ -43,7 +43,7 @@ class FavoritesList : AppCompatActivity() {
 
             // Initialize the adapter with the loaded data
             val adapterObject = MyAdapter(favoritedRestos)
-            adapterObject.setUsername(username)
+//            adapterObject.setUsername(username)
             recyclerView.adapter = adapterObject
         }
 

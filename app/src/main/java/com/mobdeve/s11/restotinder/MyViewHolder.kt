@@ -14,24 +14,23 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     private val restaurantImage: ImageView = itemView.findViewById(R.id.ivRestaurantImage)
     private val restaurantName: TextView= itemView.findViewById(R.id.tvRestaurantName)
     private val restaurantLocation: TextView= itemView.findViewById(R.id.tvLocation)
-    private val restaurantOpenHours: TextView= itemView.findViewById(R.id.tvOpenHours)
+    //private val restaurantPricing: TextView= itemView.findViewById(R.id.tvPricing)
     private val restaurantRatings: TextView= itemView.findViewById(R.id.tvRatings)
     private val delButton: ImageButton = itemView.findViewById(R.id.delButton)
     private val btnFavorite: ImageButton = itemView.findViewById(R.id.btnFavorite)
     private val mapButton: ImageButton = itemView.findViewById(R.id.mapButton)
     private val linearLayoutRating : LinearLayout = itemView.findViewById(R.id.linearLayoutRating)
-    private val profileButton: ImageButton = itemView.findViewById(R.id.btnProfile)
 
     var isFavorite: Boolean = false // default value
-        fun bindData(character: RestaurantModel) {
+    fun bindData(character: RestaurantModel) {
 
-            Glide.with(itemView.context)
-                .load(character.imageId) // Replace 'character.imageUrl' with the URL string
-                .into(restaurantImage)
-            restaurantName.text = character.name
-            restaurantLocation.text = character.location
-            restaurantOpenHours.text = character.open.toString()
-            restaurantRatings.text = character.rating.toString().plus(" / 5.0")
+        Glide.with(itemView.context)
+            .load(character.imageId) // Replace 'character.imageUrl' with the URL string
+            .into(restaurantImage)
+        restaurantName.text = character.name
+        restaurantLocation.text = character.location
+        //restaurantPricing.text = character.pricing.toString()
+        restaurantRatings.text = character.rating.toString().plus(" / 5.0")
     }
 
     fun setDeleteOnClickListener(onClickListener: View.OnClickListener){
@@ -40,16 +39,16 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
 
     fun setFavoriteOnClickListener(onClickListener: OnClickListener){
         btnFavorite.setOnClickListener {
-        isFavorite = !isFavorite
+            isFavorite = !isFavorite
 
-        if (isFavorite){
-            btnFavorite.setBackgroundResource(R.drawable.baseline_favorite_24)
+            if (isFavorite){
+                btnFavorite.setBackgroundResource(R.drawable.baseline_favorite_24)
 
-        } else {
-            btnFavorite.setBackgroundResource(R.drawable.baseline_favorite_border_24)
-        }
+            } else {
+                btnFavorite.setBackgroundResource(R.drawable.baseline_favorite_border_24)
+            }
 
-        onClickListener.onClick(btnFavorite)
+            onClickListener.onClick(btnFavorite)
         }
     }
 
@@ -66,9 +65,4 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
             itemView.context.startActivity(intent)
         }
     }
-
-    fun setProfileOnClickListener(onClickListener: View.OnClickListener){
-        profileButton.setOnClickListener(onClickListener)
-    }
-
 }
