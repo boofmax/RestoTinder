@@ -4,6 +4,7 @@ import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -26,6 +27,7 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     private val mapButton: ImageButton = itemView.findViewById(R.id.mapButton)
     private val linearLayoutRating : LinearLayout = itemView.findViewById(R.id.linearLayoutRating)
     private val profileButton: ImageButton = itemView.findViewById(R.id.btnProfile)
+    private val backButton: Button = itemView.findViewById(R.id.favorites_backbtn)
 
     var isFavorite: Boolean = false // default value
 
@@ -40,6 +42,9 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
         Log.d(TAG, "DETAILS: "+ character.name)
     }
 
+    fun setBackButtonOnClickListener(onClickListener: View.OnClickListener){
+        backButton.setOnClickListener(onClickListener)
+    }
     fun setDeleteOnClickListener(onClickListener: View.OnClickListener){
         delButton.setOnClickListener(onClickListener)
     }
@@ -64,8 +69,9 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     }
 
     fun setMapOnClickListener(onClickListener: View.OnClickListener, restaurantModel: RestaurantModel) {
-        mapButton.setOnClickListener {
 
+        mapButton.setOnClickListener {
+            Log.d("MyViewHolder", "I entered here"+ restaurantModel.latitude +" " + restaurantModel.longitude)
             val intent = Intent(itemView.context, MapsActivity::class.java)
             intent.putExtra("restaurantLatitude", restaurantModel.latitude)
             intent.putExtra("restaurantLongitude", restaurantModel.longitude)

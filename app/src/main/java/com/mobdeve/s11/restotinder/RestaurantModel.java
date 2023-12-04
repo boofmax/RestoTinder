@@ -20,7 +20,7 @@ public class RestaurantModel implements Parcelable {
         this.longitude = longitude;
     }
 
-    public RestaurantModel(String imageId, boolean isFavorite, String location, String name, String status, double rating) {
+    public RestaurantModel(String imageId, boolean isFavorite, String location, String name, String status, double rating, double latitude, double longitude) {
         this.imageId = imageId;
         this.isFavorite = isFavorite;
         this.location = location;
@@ -28,8 +28,8 @@ public class RestaurantModel implements Parcelable {
         this.open = status;
         this.rating = rating;
         this.placeId = "";
-        this.latitude = 0;
-        this.longitude = 0;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     protected RestaurantModel(Parcel in) {

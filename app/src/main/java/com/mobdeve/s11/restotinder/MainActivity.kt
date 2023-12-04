@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         val adapterObject = MyAdapter(restaurants)
         adapterObject.setUsername(username)
+        adapterObject.setFavoriteRestos(restaurants)
         recyclerView.adapter = adapterObject
 
         val layoutManager = LinearLayoutManager(this)
@@ -92,8 +93,10 @@ class MainActivity : AppCompatActivity() {
                     val name = document.getString(MyFirestoreReferences.name_FIELD)
                     val pricing = document.get(MyFirestoreReferences.pricing_FIELD)?.toString()
                     val rating = document.getDouble(MyFirestoreReferences.rating_FIELD) ?: 0.0
+                    val latitude = document.getDouble(MyFirestoreReferences.latitude_FIELD) ?: 0.0
+                    val longitude = document.getDouble(MyFirestoreReferences.longitude_FIELD) ?: 0.0
 
-                    val resto = RestaurantModel(imageId, isFavorite, location, name, pricing, rating)
+                    val resto = RestaurantModel(imageId, isFavorite, location, name, pricing, rating,latitude,longitude)
                     restaurants.add(resto)
                 }
             }

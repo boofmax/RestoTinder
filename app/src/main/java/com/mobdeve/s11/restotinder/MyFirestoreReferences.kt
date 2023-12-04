@@ -13,4 +13,6 @@ object MyFirestoreReferences {
     const val name_FIELD = "name"
     const val pricing_FIELD = "pricing"
     const val rating_FIELD = "rating"
+    const val latitude_FIELD = "latitude"
+    const val longitude_FIELD = "longitude"
 }

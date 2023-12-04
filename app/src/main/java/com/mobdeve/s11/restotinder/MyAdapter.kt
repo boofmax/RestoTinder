@@ -39,42 +39,51 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bindData(data.get(position))
+        holder.bindData(data[holder.bindingAdapterPosition])
+
 
         holder.setDeleteOnClickListener(View.OnClickListener {
-            holder.itemView.setOnClickListener{
-                Toast.makeText(holder.itemView.context, "Restaurant Deleted: "+
-                data[holder.adapterPosition].name, Toast.LENGTH_SHORT).show()
-            }
+            val currentPosition = holder.bindingAdapterPosition
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                Toast.makeText(holder.itemView.context, "Restaurant Deleted: " +
+                        data[currentPosition].name, Toast.LENGTH_SHORT).show()
 
-            this.data.removeAt(position)
-            notifyDataSetChanged()
+                data.removeAt(currentPosition)
+                notifyItemRemoved(currentPosition)
+                notifyDataSetChanged()
+            }
         })
 
         holder.setFavoriteOnClickListener(View.OnClickListener {
             Log.d(TAG, "Current Restaurants" + this.favoriteRestos.joinToString("\n"))
-            val favorited_object_info = data[holder.getBindingAdapterPosition()]
-            val collectionReference = dbRef.collection(MyFirestoreReferences.FAVORITE_COLLECTION)
-            if(holder.isFavorite){
-                Toast.makeText(
-                    holder.itemView.context,
-                    "Restaurant Added to Favorites: " + data[holder.adapterPosition].name,
-                    Toast.LENGTH_SHORT
-                ).show()
+            val currentPosition = holder.bindingAdapterPosition
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                val favorited_object_info = data[currentPosition]
+                val collectionReference =
+                    dbRef.collection(MyFirestoreReferences.FAVORITE_COLLECTION)
+                if (holder.isFavorite) {
+                    Toast.makeText(
+                        holder.itemView.context,
+                        "Restaurant Added to Favorites: " + data[holder.adapterPosition].name,
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-                /**?
-                 * const val imageId_FIELD = "imageId"
-                 *     const val isFavorite_FIELD = "isFavorite"
-                 *     const val location_FIELD = "location"
-                 *     const val name_FIELD = "name"
-                 *     const val pricing_FIELD = "pricing"
-                 *     const val rating_FIELD = "rating"
-                 */
-                collectionReference.add(this.populate_hashmap(favorited_object_info))
-                this.favoriteRestos.add(favorited_object_info)
-                Log.d(TAG, "Current Restaurants after addition" + this.favoriteRestos.joinToString("\n"))
-                Log.d(TAG, "SUCC BALLS")//data[holder.getBindingAdapterPosition()])
-                /*
+                    /**?
+                     * const val imageId_FIELD = "imageId"
+                     *     const val isFavorite_FIELD = "isFavorite"
+                     *     const val location_FIELD = "location"
+                     *     const val name_FIELD = "name"
+                     *     const val pricing_FIELD = "pricing"
+                     *     const val rating_FIELD = "rating"
+                     */
+                    collectionReference.add(this.populate_hashmap(favorited_object_info))
+                    this.favoriteRestos.add(favorited_object_info)
+                    Log.d(
+                        TAG,
+                        "Current Restaurants after addition" + this.favoriteRestos.joinToString("\n")
+                    )
+                    Log.d(TAG, "SUCC BALLS")//data[holder.getBindingAdapterPosition()])
+                    /*
                 * Utilize update and get of firestore
                 * Check how to call the update method.
                 * Check how to call the delete method
@@ -85,23 +94,26 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
                 * [3] Compare if restorant is present in favorites
                 *   - If present, isFavorite is True.
                 * */
-            } else {
-                val existingFavorite = favoriteRestos.find {
-                    it.name == favorited_object_info.name && it.location == favorited_object_info.location
+                } else {
+                    val existingFavorite = favoriteRestos.find {
+                        it.name == favorited_object_info.name && it.location == favorited_object_info.location
+                    }
+                    Toast.makeText(
+                        holder.itemView.context,
+                        "Restaurant Removed from Favorites: " + data[holder.adapterPosition].name,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val imageIdToDelete = favorited_object_info.imageId
+                    val usernameToDelete = this.username
+                    this.delete_favorite(collectionReference, usernameToDelete, imageIdToDelete)
+                    this.favoriteRestos.remove(existingFavorite)
+                    Log.d(
+                        TAG,
+                        "Current Restaurants after removal" + this.favoriteRestos.joinToString("\n")
+                    )
+                    Log.d(TAG, "DEEZ NUTS")
                 }
-                Toast.makeText(
-                    holder.itemView.context,
-                    "Restaurant Removed from Favorites: " + data[holder.adapterPosition].name,
-                    Toast.LENGTH_SHORT
-                ).show()
-                val imageIdToDelete = favorited_object_info.imageId
-                val usernameToDelete = this.username
-                this.delete_favorite(collectionReference, usernameToDelete, imageIdToDelete)
-                this.favoriteRestos.remove(existingFavorite)
-                Log.d(TAG, "Current Restaurants after removal" + this.favoriteRestos.joinToString("\n"))
-                Log.d(TAG, "DEEZ NUTS")
             }
-
         })
 
         holder.setRatingOnClickListener(View.OnClickListener {
@@ -155,6 +167,8 @@ class MyAdapter(private val data: ArrayList<RestaurantModel>): RecyclerView.Adap
         favorited_object[MyFirestoreReferences.pricing_FIELD] = favorited_object_info.open
         favorited_object[MyFirestoreReferences.rating_FIELD] = favorited_object_info.rating
         favorited_object[MyFirestoreReferences.USER_FIELD] = this.username
+        favorited_object[MyFirestoreReferences.longitude_FIELD] = favorited_object_info.longitude
+        favorited_object[MyFirestoreReferences.latitude_FIELD] = favorited_object_info.latitude
         return favorited_object
     }
     fun delete_favorite(collectionReference : CollectionReference, usernameToDelete: String, imageIdToDelete: String){

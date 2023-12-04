@@ -127,23 +127,12 @@
 
     <ImageButton
         android:id="@+id/delButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="40dp"
         android:src="@drawable/baseline_delete_outline_24"
-        style="?android:attr/borderlessButtonStyle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnFavorite"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <ImageButton
-        android:id="@+id/btnFavorite"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/baseline_favorite_border_24"
-        style="?android:attr/borderlessButtonStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -163,6 +152,21 @@
         android:src="@drawable/baseline_pin_drop_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageButton
+        android:id="@+id/btnFavorite"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:visibility="gone"/>
+    <ImageButton
+        android:id="@+id/btnProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_person_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

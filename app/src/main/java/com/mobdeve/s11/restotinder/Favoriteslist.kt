@@ -42,8 +42,9 @@ class FavoritesList : AppCompatActivity() {
             Log.d(TAG, "$username NOMNOM IT ENTERED FAVORITES BOI \t" + favoritedRestos.joinToString("\n"))
 
             // Initialize the adapter with the loaded data
-            val adapterObject = MyAdapter(favoritedRestos)
+            val adapterObject = favoritesAdapter(favoritedRestos)
             adapterObject.setUsername(username)
+            adapterObject.setActivity(this@FavoritesList)
             recyclerView.adapter = adapterObject
         }
 
@@ -70,8 +71,10 @@ class FavoritesList : AppCompatActivity() {
                     val name = document.getString(MyFirestoreReferences.name_FIELD)
                     val pricing = document.get(MyFirestoreReferences.pricing_FIELD)?.toString()
                     val rating = document.getDouble(MyFirestoreReferences.rating_FIELD) ?: 0.0
+                    val latitude = document.getDouble(MyFirestoreReferences.latitude_FIELD) ?: 0.0
+                    val longitude = document.getDouble(MyFirestoreReferences.longitude_FIELD) ?: 0.0
 
-                    val resto = RestaurantModel(imageId, isFavorite, location, name, pricing, rating)
+                    val resto = RestaurantModel(imageId, isFavorite, location, name, pricing, rating, latitude, longitude)
                     restaurants.add(resto)
                 }
             }
