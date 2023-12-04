@@ -1,42 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fffc7f">
 
-    <!-- Places Basic: image -->
-    <ImageView
-        android:id="@+id/ivRestaurantImage"
-        android:layout_width="220dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="112dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <!-- Places Basic: name -->
+        <ImageView
+            android:id="@+id/ivRestaurantImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="15dp"
+            android:scaleType="centerCrop" />
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/tvRestaurantName"
+        style="@style/RockinsodaFontStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="32dp"
         android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="Mang Inasal"
-        android:textSize="16sp"
+        android:textColor="#3A3B3C"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivRestaurantImage"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-    <!-- Places Basic: formatted_address/adr_address (unsure) -->
     <TextView
+        style="@style/RockinsodaFontStyle"
         android:id="@+id/tvLocation"
         android:layout_width="343dp"
         android:layout_height="53dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
+        android:textColor="#3A3B3C"
+        android:textSize="20sp"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
         android:text="Taft Ave, Malate, Manila, 1004 Metro Manila"
@@ -47,12 +64,18 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="404dp"
-        android:layout_height="59dp"
+        android:layout_width="361dp"
+        android:layout_height="84dp"
         android:layout_marginTop="10dp"
+        android:background="#fffc7f"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLocation">
+        app:layout_constraintTop_toBottomOf="@+id/tvLocation"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -63,29 +86,36 @@
 
             <TextView
                 android:id="@+id/tvStatusHeader"
+                style="@style/RockinsodaFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:gravity="center"
                 android:text="STATUS"
+                android:textColor="#3A3B3C"
                 android:textStyle="bold"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pokeDescription"
                 tools:ignore="MissingConstraints" />
 
-            <!-- Places Atmosphere: price_level -->
             <TextView
                 android:id="@+id/tvOpenHours"
+                style="@style/RockinsodaFontStyle"
                 android:layout_width="162dp"
                 android:layout_height="21dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="2dp"
                 android:gravity="center"
+                android:textSize="16sp"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:text="$$"
+                android:textColor="#3A3B3C"
                 app:layout_constraintTop_toBottomOf="@+id/speciesHeader"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="49dp" />
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/linearLayoutRating"
@@ -97,31 +127,34 @@
 
             <TextView
                 android:id="@+id/tvRatingsHeader"
+                style="@style/RockinsodaFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="RATINGS"
+                android:textSize="16sp"
+                android:textColor="#3A3B3C"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pokeDescription"
                 tools:ignore="MissingConstraints" />
 
-            <!-- Places Atmosphere: rating -->
             <TextView
                 android:id="@+id/tvRatings"
+                style="@style/RockinsodaFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
+                android:textSize="16sp"
                 android:text="5 ⭐️"
+                android:textColor="#3A3B3C"
                 app:layout_constraintTop_toBottomOf="@+id/locationHeader"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="207dp" />
 
         </LinearLayout>
-
-
     </LinearLayout>
 
     <ImageButton
@@ -146,28 +179,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <ImageButton
-        android:id="@+id/btnProfile"
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_person_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:cardElevation="8dp"
+    app:cardCornerRadius="4dp"
+        android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/mapButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/baseline_pin_drop_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/btnProfile"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="#fffc7f"
+            android:src="@drawable/baseline_person_24" />
+    </androidx.cardview.widget.CardView>
+
+<androidx.cardview.widget.CardView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+app:cardElevation="8dp"
+    android:layout_marginRight="10dp"
+    app:cardCornerRadius="4dp"
+    android:layout_marginTop="10dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+<ImageButton
+android:id="@+id/mapButton"
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+android:background="#fffc7f"
+android:src="@drawable/baseline_pin_drop_24" />
+    </androidx.cardview.widget.CardView>
+
     <Button
         android:id="@+id/favorites_backbtn"
+        style="@style/RockinsodaFontStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
