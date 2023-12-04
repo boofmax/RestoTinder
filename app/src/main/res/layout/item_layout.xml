@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -46,17 +45,17 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <TextView
-        style="@style/RockinsodaFontStyle"
         android:id="@+id/tvLocation"
+        style="@style/RockinsodaFontStyle"
         android:layout_width="343dp"
         android:layout_height="53dp"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:textColor="#3A3B3C"
-        android:textSize="20sp"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
         android:text="Taft Ave, Malate, Manila, 1004 Metro Manila"
+        android:textColor="#3A3B3C"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRestaurantName"
@@ -93,8 +92,8 @@
                 android:gravity="center"
                 android:text="STATUS"
                 android:textColor="#3A3B3C"
-                android:textStyle="bold"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pokeDescription"
                 tools:ignore="MissingConstraints" />
@@ -106,11 +105,11 @@
                 android:layout_height="21dp"
                 android:layout_marginTop="2dp"
                 android:gravity="center"
-                android:textSize="16sp"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:text="$$"
                 android:textColor="#3A3B3C"
+                android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@+id/speciesHeader"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="49dp" />
@@ -132,8 +131,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="RATINGS"
-                android:textSize="16sp"
                 android:textColor="#3A3B3C"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pokeDescription"
@@ -147,9 +146,9 @@
                 android:gravity="center"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
-                android:textSize="16sp"
                 android:text="5 ⭐️"
                 android:textColor="#3A3B3C"
+                android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@+id/locationHeader"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="207dp" />
@@ -159,35 +158,35 @@
 
     <ImageButton
         android:id="@+id/delButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="40dp"
         android:src="@drawable/baseline_delete_outline_24"
-        style="?android:attr/borderlessButtonStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnFavorite"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ImageButton
         android:id="@+id/btnFavorite"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="92dp"
         android:layout_marginTop="40dp"
         android:src="@drawable/baseline_favorite_border_24"
-        style="?android:attr/borderlessButtonStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardElevation="8dp"
-    app:cardCornerRadius="4dp"
         android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/btnProfile"
@@ -197,22 +196,22 @@
             android:src="@drawable/baseline_person_24" />
     </androidx.cardview.widget.CardView>
 
-<androidx.cardview.widget.CardView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-app:cardElevation="8dp"
-    android:layout_marginRight="10dp"
-    app:cardCornerRadius="4dp"
-    android:layout_marginTop="10dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-<ImageButton
-android:id="@+id/mapButton"
-    android:layout_width="70dp"
-    android:layout_height="70dp"
-android:background="#fffc7f"
-android:src="@drawable/baseline_pin_drop_24" />
+        <ImageButton
+            android:id="@+id/mapButton"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="#fffc7f"
+            android:src="@drawable/baseline_pin_drop_24" />
     </androidx.cardview.widget.CardView>
 
     <Button
@@ -220,8 +219,13 @@ android:src="@drawable/baseline_pin_drop_24" />
         style="@style/RockinsodaFontStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="432dp"
+        android:layout_marginBottom="864dp"
         android:text="Back"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
