@@ -46,43 +46,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         dbRef = Firebase.firestore
-        val favoritesRef = dbRef.collection(MyFirestoreReferences.FAVORITE_COLLECTION)
+        //val favoritesRef = dbRef.collection(MyFirestoreReferences.FAVORITE_COLLECTION)
         username = intent.getStringExtra("uname").toString()
 
         //var favoritedRestos = loadFavoritesBlocking(favoritesRef)
         // Initialize restaurants with an empty list to avoid null reference
         restaurants = ArrayList()
+        Log.d("DEBUGGING", "ENTERED")
 
-        // Request location permissions if not granted
         if (checkLocationPermissions()) {
             Log.d("Perms", "onCreate: Permission granted")
             loadRestaurants()
-
-            // Load restaurants data with startActivityForResult
-
         }
 
+        Log.d("DEBUGGING", "LEFT")
         this.recyclerView = findViewById(R.id.recyclerView)
-/*
-        // Initialize restaurants with an empty list to avoid null reference
-        restaurants = loadRestaurants()
-        var adapterObject  = MyAdapter(restaurants)
+        //restaurants = loadRestaurants()
+
+        val adapterObject = MyAdapter(restaurants)
         adapterObject.setUsername(username)
-        //adapterObject.setFavoriteRestos(favoritedRestos)
-
-        this.recyclerView.adapter = adapterObject
-*/
-        lifecycleScope.launch {
-            // Inside the coroutine, you can call your suspend function
-            val favoritedRestos = loadFavorites(favoritesRef)
-
-            // Use the loaded data to update UI or perform any necessary actions
-            // For example:
-            val adapterObject = MyAdapter(restaurants)
-            adapterObject.setUsername(username)
-            adapterObject.setFavoriteRestos(favoritedRestos)
-            recyclerView.adapter = adapterObject
-        }
+        recyclerView.adapter = adapterObject
 
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -90,11 +73,12 @@ class MainActivity : AppCompatActivity() {
 
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(this.recyclerView)
+
     }
 
     private suspend fun loadFavorites(favoritesRef: CollectionReference): ArrayList<RestaurantModel> {
         val restaurants = ArrayList<RestaurantModel>()
-        Log.d("LOGGINGSTUF", "Entered")
+        Log.d("DEBUGGING", "Entered LOAD FAVORITES")
 
         try {
             val result = favoritesRef.get().await()
@@ -121,7 +105,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun loadRestaurants(): ArrayList<RestaurantModel> {
+    private fun loadRestaurants() {
         // Initialize the location manager
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
@@ -141,6 +125,8 @@ class MainActivity : AppCompatActivity() {
                 locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
             }
 
+            Log.d("DEBUGGING", "ENTERED LOADRESTAURANTS - Location "+locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER).toString())
+
             // Check if the location is not null
             if (location != null) {
                 // Get latitude and longitude from the location
@@ -155,10 +141,14 @@ class MainActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
+            } else {
+                Log.d("DEBUGGING", "Location is null")
             }
         }
-        return restaurants;
+
+        Log.d("DEBUGGING", "LEFT LOADRESTAURANTS")
     }
+
 
     private fun checkLocationPermissions(): Boolean {
         val fineLocationPermission =
@@ -180,18 +170,10 @@ class MainActivity : AppCompatActivity() {
             )
             return false
         }
+        Log.d("DEBUGGING", "LOCATION GRANTED")
         return true
     }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == FAVORITES_LIST_REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                // FavoritesList has finished loading data
-                Log.d("MainActivity", "FavoritesList has finished loading data.")
-            }
-        }
-    }
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }

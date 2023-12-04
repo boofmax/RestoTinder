@@ -13,7 +13,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.mobdeve.s11.restotinder.R
 import com.mobdeve.s11.restotinder.databinding.ActivityMapsBinding
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -23,6 +22,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private var restaurantLatitude: Double = 14.5648 // default dlsu
     private var restaurantLongitude: Double = 120.9932 // default dlsu
+
+    companion object {
+        private const val REQUEST_LOCATION_PERMISSION = 123
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +55,25 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val restaurantLatitude = intent.getDoubleExtra("restaurantLatitude", 14.5648)
         val restaurantLongitude = intent.getDoubleExtra("restaurantLongitude", 120.9932)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Request location permissions
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                REQUEST_LOCATION_PERMISSION
+            )
+            return
+        }
         mMap.isMyLocationEnabled = true // enable location tracking
         mMap.uiSettings.isMyLocationButtonEnabled = true // enable location button
         val restaurantLocation = LatLng(restaurantLatitude, restaurantLongitude)
@@ -65,5 +87,25 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Fix zoom
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restaurantLocation, zoomLevel))
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            REQUEST_LOCATION_PERMISSION -> {
+                // Check if the permission is granted
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission is granted, enable the location features
+                    mMap.isMyLocationEnabled = true
+                    mMap.uiSettings.isMyLocationButtonEnabled = true
+                } else {
+                    // Permission denied, handle accordingly (e.g., show a message or disable features)
+                    Log.d("MapsActivity", "Location permission denied")
+                }
+            }
+        }
     }
 }

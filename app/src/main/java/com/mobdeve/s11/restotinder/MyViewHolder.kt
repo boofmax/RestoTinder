@@ -1,6 +1,7 @@
 package com.mobdeve.s11.restotinder
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.ImageButton
@@ -11,6 +12,10 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.mobdeve.s11.restotinder.R
 import com.bumptech.glide.Glide
 class MyViewHolder(itemView: View): ViewHolder(itemView) {
+
+    companion object {
+        private const val TAG = "MyViewHolder"
+    }
     private val restaurantImage: ImageView = itemView.findViewById(R.id.ivRestaurantImage)
     private val restaurantName: TextView= itemView.findViewById(R.id.tvRestaurantName)
     private val restaurantLocation: TextView= itemView.findViewById(R.id.tvLocation)
@@ -23,15 +28,16 @@ class MyViewHolder(itemView: View): ViewHolder(itemView) {
     private val profileButton: ImageButton = itemView.findViewById(R.id.btnProfile)
 
     var isFavorite: Boolean = false // default value
-        fun bindData(character: RestaurantModel) {
 
-            Glide.with(itemView.context)
-                .load(character.imageId) // Replace 'character.imageUrl' with the URL string
-                .into(restaurantImage)
-            restaurantName.text = character.name
-            restaurantLocation.text = character.location
-            restaurantOpenHours.text = character.open.toString()
-            restaurantRatings.text = character.rating.toString().plus(" / 5.0")
+    fun bindData(character: RestaurantModel) {
+        Glide.with(itemView.context)
+            .load(character.imageId) // Replace 'character.imageUrl' with the URL string
+            .into(restaurantImage)
+        restaurantName.text = character.name
+        restaurantLocation.text = character.location
+        restaurantOpenHours.text = character.open.toString()
+        restaurantRatings.text = character.rating.toString().plus(" / 5.0")
+        Log.d(TAG, "DETAILS: "+ character.name)
     }
 
     fun setDeleteOnClickListener(onClickListener: View.OnClickListener){
